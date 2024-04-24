@@ -1,0 +1,21 @@
+[
+  { "id": "none", "label": "- Aucun -" },
+  { "id": "4-point-stars", "label": "4 point stars" },
+  { "id": "anchors-away", "label": "Anchors away" },
+  { "id": "automn", "label": "Automn" },
+  { "id": "bubbles", "label": "Bubbles" },
+  { "id": "charlie-brown", "label": "Charlie Brown" },
+  { "id": "circuit-board", "label": "Circuit board" },
+  { "id": "endless-clouds", "label": "Endless clouds" },
+  { "id": "falling-triangles", "label": "Falling triangles" },
+  { "id": "floating-cogs", "label": "Floating cogs" },
+  { "id": "glamorous", "label": "Glamorous" },
+  { "id": "i-like-food", "label": "I like food" },
+  { "id": "hexagons", "label": "Hexagons" },
+  { "id": "hideout", "label": "Hideout" },
+  { "id": "overlapping-circles", "label": "Overlapping circles" },
+  { "id": "plus", "label": "Plus" },
+  { "id": "rounded-plus-connected", "label": "Rounded plus connected" },
+  { "id": "tic-tac-toe", "label": "Tic tac toe" },
+  { "id": "topography", "label": "Topography" }
+]
