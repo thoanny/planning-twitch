@@ -28,6 +28,13 @@ export const useSettingsStore = defineStore("settings", () => {
     },
   });
 
+  const initSettings = (settings) => {
+    console.log("initSettings");
+    if (!settings) return;
+
+    data.value = settings;
+  };
+
   const getTitleAuto = () => {
     const start = dayjs(data.value.date.start ?? undefined).weekday(0);
     const end = dayjs(data.value.date.start ?? undefined).weekday(6);
@@ -51,5 +58,5 @@ export const useSettingsStore = defineStore("settings", () => {
     )}`;
   };
 
-  return { data, getTitleAuto };
+  return { data, initSettings, getTitleAuto };
 });

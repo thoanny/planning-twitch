@@ -60,7 +60,19 @@ onMounted(() => {
     runtimeConfig.public.localStorage.events
   );
   eventsStore.initEvents(eventsLocal ? JSON.parse(eventsLocal) : []);
+
+  const settingsLocal = localStorage.getItem(
+    runtimeConfig.public.localStorage.settings
+  );
+  settingsStore.initSettings(settingsLocal ? JSON.parse(settingsLocal) : null);
 });
+
+const saveSettings = debounce(() => {
+  localStorage.setItem(
+    runtimeConfig.public.localStorage.settings,
+    JSON.stringify(settings.value)
+  );
+}, 300);
 
 eventsStore.$subscribe(() => {
   loadLandscapeImage();
@@ -70,6 +82,7 @@ eventsStore.$subscribe(() => {
 settingsStore.$subscribe(() => {
   loadLandscapeImage();
   loadPortraitImage();
+  saveSettings();
 });
 </script>
 
