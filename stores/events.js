@@ -2,11 +2,16 @@ import { v4 as uuidv4 } from "uuid";
 import days from "~/data/days.json";
 
 export const useEventsStore = defineStore("events", () => {
+  const runtimeConfig = useRuntimeConfig();
   const modalOpen = ref(false);
   const data = ref([]);
 
   const findByDay = (day) => {
     return data.value.filter((event) => event.day === day);
+  };
+
+  const initEvents = (events) => {
+    data.value = events;
   };
 
   const editedEvent = reactive({
@@ -53,6 +58,10 @@ export const useEventsStore = defineStore("events", () => {
     }
 
     modalOpen.value = false;
+    localStorage.setItem(
+      runtimeConfig.public.localStorage.events,
+      JSON.stringify(data.value)
+    );
   };
 
   const handleDeleteEvent = (uid) => {
@@ -60,10 +69,15 @@ export const useEventsStore = defineStore("events", () => {
     if (eventIdx > -1) {
       data.value.splice(eventIdx, 1);
     }
+    localStorage.setItem(
+      runtimeConfig.public.localStorage.events,
+      JSON.stringify(data.value)
+    );
   };
 
   return {
     data,
+    initEvents,
     findByDay,
     modalOpen,
     handleEditEvent,

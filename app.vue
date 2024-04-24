@@ -3,6 +3,8 @@ import domtoimage from "dom-to-image-more";
 import debounce from "lodash/debounce";
 import days from "~/data/days.json";
 
+const runtimeConfig = useRuntimeConfig();
+
 const renders = [
   {
     key: "landscapeTab",
@@ -54,12 +56,18 @@ const loadPortraitImage = debounce(() => {
 }, 500);
 
 onMounted(() => {
+  const eventsLocal = localStorage.getItem(
+    runtimeConfig.public.localStorage.events
+  );
+  eventsStore.initEvents(eventsLocal ? JSON.parse(eventsLocal) : []);
+});
+
+eventsStore.$subscribe(() => {
   loadLandscapeImage();
   loadPortraitImage();
 });
 
-watch([eventsStore.data, settingsStore.data], async () => {
-  console.log("watched");
+settingsStore.$subscribe(() => {
   loadLandscapeImage();
   loadPortraitImage();
 });
