@@ -45,7 +45,7 @@ const tabs = [
             clip-rule="evenodd"
           />
         </svg>
-        Code source
+        Source
       </a>
     </div>
   </div>
