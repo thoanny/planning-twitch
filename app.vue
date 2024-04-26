@@ -8,11 +8,11 @@ const runtimeConfig = useRuntimeConfig();
 const renders = [
   {
     key: "landscapeTab",
-    label: "Paysage",
+    label: "Paysage (1920 × 1080 px)",
   },
   {
     key: "portraitTab",
-    label: "Portrait",
+    label: "Portrait (1080 × 1920 px)",
   },
 ];
 
@@ -94,7 +94,14 @@ settingsStore.$subscribe(() => {
     <div class="flex-1">
       <UTabs :items="renders" class="w-full">
         <template #item="{ item }">
-          <UCard>
+          <UCard
+            class="bg-pattern-bathroom-floor aspect-video"
+            :ui="{
+              body: {
+                padding: 'p-4 sm:p-4',
+              },
+            }"
+          >
             <div v-if="item.key === 'landscapeTab'" class="space-y-3">
               <img :src="imageLandscape" v-if="imageLandscape" />
 
@@ -326,7 +333,8 @@ settingsStore.$subscribe(() => {
                 :src="imagePortrait"
                 alt=""
                 v-if="imagePortrait"
-                class="w-1/2 mx-auto"
+                class="object-contain w-full h-full"
+                style="aspect-ratio: 16/9"
               />
               <div class="hidden">
                 <!-- <div> -->
