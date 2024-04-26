@@ -101,19 +101,21 @@ const handleDownloadImage = (orientation) => {
 </script>
 
 <template>
-  <div class="flex gap-4 h-full p-4 mx-auto container">
-    <div class="max-w-sm shrink-0 w-full">
+  <div
+    class="flex flex-col-reverse lg:flex-row gap-4 h-full p-4 mx-auto container"
+  >
+    <div class="lg:max-w-sm shrink-0 w-full">
       <AppSidebar />
     </div>
     <div class="flex-1">
       <UTabs :items="renders" class="w-full">
         <template #item="{ item }">
           <UCard
-            class="bg-pattern-bathroom-floor aspect-video"
+            class="bg-pattern-bathroom-floor"
             :class="`font-${settings.font.id}`"
             :ui="{
               body: {
-                padding: 'p-4 sm:p-4',
+                padding: 'p-2 md:p-4',
               },
             }"
           >
@@ -138,7 +140,7 @@ const handleDownloadImage = (orientation) => {
                     class="text-6xl uppercase text-center"
                     v-text="settings.title.text"
                   ></div>
-                  <div class="flex h-full w-full gap-8 container">
+                  <div class="flex h-full w-full gap-8 max-w-[1536px]">
                     <div
                       class="flex flex-col overflow-hidden"
                       :class="[
@@ -352,8 +354,7 @@ const handleDownloadImage = (orientation) => {
                 :src="imagePortrait"
                 alt=""
                 v-if="imagePortrait"
-                class="object-contain w-full h-full"
-                style="aspect-ratio: 16/9"
+                class="object-contain w-full h-full lg:aspect-video"
                 @contextmenu.prevent="handleDownloadImage('portrait')"
               />
               <div class="hidden">
