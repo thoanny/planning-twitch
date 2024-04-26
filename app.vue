@@ -84,6 +84,20 @@ settingsStore.$subscribe(() => {
   loadPortraitImage();
   saveSettings();
 });
+
+const handleDownloadImage = (orientation) => {
+  var link = document.createElement("a");
+
+  if ("landscape" === orientation) {
+    link.download = "planning-twitch-paysage.png";
+    link.href = imageLandscape.value;
+  } else {
+    link.download = "planning-twitch-portrait.png";
+    link.href = imagePortrait.value;
+  }
+
+  link.click();
+};
 </script>
 
 <template>
@@ -103,7 +117,12 @@ settingsStore.$subscribe(() => {
             }"
           >
             <div v-if="item.key === 'landscapeTab'" class="space-y-3">
-              <img :src="imageLandscape" v-if="imageLandscape" />
+              <img
+                :src="imageLandscape"
+                v-if="imageLandscape"
+                @contextmenu.prevent="handleDownloadImage('landscape')"
+                class="rounded-lg"
+              />
 
               <div class="hidden">
                 <div
@@ -116,7 +135,7 @@ settingsStore.$subscribe(() => {
                   style="width: 1920px; height: 1080px"
                 >
                   <div
-                    class="text-6xl font-semibold text-center"
+                    class="text-6xl uppercase text-center"
                     v-text="settings.title.text"
                   ></div>
                   <div class="flex h-full w-full gap-8 container">
@@ -335,6 +354,7 @@ settingsStore.$subscribe(() => {
                 v-if="imagePortrait"
                 class="object-contain w-full h-full"
                 style="aspect-ratio: 16/9"
+                @contextmenu.prevent="handleDownloadImage('portrait')"
               />
               <div class="hidden">
                 <!-- <div> -->
@@ -348,7 +368,7 @@ settingsStore.$subscribe(() => {
                   style="width: 1080px; height: 1920px"
                 >
                   <div
-                    class="text-6xl font-semibold text-center"
+                    class="text-5xl font-semibold uppercase text-center"
                     v-text="settings.title.text"
                   ></div>
                   <div class="flex flex-col h-full w-full gap-4 container">
