@@ -9,7 +9,7 @@ const { data } = await useAsyncData("tpotes", () =>
     },
     body: JSON.stringify({
       query: `{
-        tPotes(where: {orderby: {field: TITLE, order: ASC}}) {
+        tPotes(first: 1000, where: {orderby: {field: TITLE, order: ASC}}) {
           nodes {
             featuredImage {
               node {
@@ -52,7 +52,7 @@ const { data } = await useAsyncData("tpotes", () =>
 
   <UModal v-model="isOpen">
     <UCard>
-      <div>
+      <div class="text-center">
         Merci à tous les <strong>T-potes</strong> qui me soutiennent dans mes
         projets, que ce soit sur
         <a
@@ -69,16 +69,19 @@ const { data } = await useAsyncData("tpotes", () =>
           >Patreon</a
         >.
 
-        <div v-if="data" class="flex flex-wrap gap-x-3 gap-y-2 mt-4">
+        <div
+          v-if="data"
+          class="flex flex-wrap gap-x-2 gap-y-2 mt-4 justify-center"
+        >
           <span
             v-for="tpote in data.data.tPotes.nodes"
             :key="tpote.id"
-            class="inline-flex gap-2 bg-gray-100 rounded-full items-center pr-4 font-semibold text-sm"
+            class="inline-flex gap-2 bg-gray-100 text-gray-900 rounded-full items-center pr-3 font-semibold text-xs border border-gray-100"
           >
             <UAvatar
               v-if="tpote.featuredImage.node.sourceUrl"
               :src="tpote.featuredImage.node.sourceUrl"
-              size="sm"
+              size="xs"
               alt=""
               class="bg-white"
             />
