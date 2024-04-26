@@ -50,14 +50,9 @@ const { data: settings } = storeToRefs(settingsStore);
 
     <h4>Contenu</h4>
 
-    <UCheckbox v-model="settings.title.auto" label="Titre automatique" />
-    <UFormGroup label="Date de début" v-if="settings.title.auto">
-      <UInput v-model="settings.date.start" type="date" />
-    </UFormGroup>
-    <UFormGroup label="Titre du planning" v-else>
+    <UFormGroup label="Titre du planning">
       <UInput v-model="settings.title.text" />
     </UFormGroup>
-    <UCheckbox v-model="settings.date.short" label="Dates en abrégé" />
     <UCheckbox
       v-model="settings.hideEmpty"
       label="Masquer les jours sans événement"

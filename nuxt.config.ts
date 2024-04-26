@@ -10,11 +10,5 @@ export default defineNuxtConfig({
   },
   css: ["~/assets/main.css"],
   devtools: { enabled: true },
-  modules: ["@nuxt/ui", "dayjs-nuxt", "@pinia/nuxt"],
-  dayjs: {
-    locales: ["fr"],
-    defaultLocale: "fr",
-    defaultTimezone: "Europe/Paris",
-    plugins: ["weekday", "timezone"],
-  },
+  modules: ["@nuxt/ui", "@pinia/nuxt"],
 });

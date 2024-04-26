@@ -110,13 +110,7 @@ settingsStore.$subscribe(() => {
                 >
                   <div
                     class="text-6xl font-semibold text-center"
-                    v-if="!settings.title.auto"
                     v-text="settings.title.text"
-                  ></div>
-                  <div
-                    class="text-6xl font-semibold text-center"
-                    v-text="settingsStore.getTitleAuto()"
-                    v-else
                   ></div>
                   <div class="flex h-full w-full gap-8 container">
                     <div
@@ -135,9 +129,8 @@ settingsStore.$subscribe(() => {
                     >
                       <div class="text-3xl uppercase text-center my-4">
                         {{
-                          settings.date.short ||
                           !eventsStore.findByDay(day.id).length
-                            ? day.label.slice(0, 3)
+                            ? day.label.slice(0, 3) + "."
                             : day.label
                         }}
                       </div>
@@ -348,15 +341,8 @@ settingsStore.$subscribe(() => {
                 >
                   <div
                     class="text-6xl font-semibold text-center"
-                    v-if="!settings.title.auto"
                     v-text="settings.title.text"
                   ></div>
-                  <div
-                    class="text-6xl font-semibold text-center"
-                    v-text="settingsStore.getTitleAuto()"
-                    v-else
-                  ></div>
-
                   <div class="flex flex-col h-full w-full gap-4 container">
                     <div
                       class="flex flex-col overflow-hidden min-h-36"
