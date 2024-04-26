@@ -110,6 +110,7 @@ const handleDownloadImage = (orientation) => {
         <template #item="{ item }">
           <UCard
             class="bg-pattern-bathroom-floor aspect-video"
+            :class="`font-${settings.font.id}`"
             :ui="{
               body: {
                 padding: 'p-4 sm:p-4',

@@ -1,6 +1,7 @@
 <script setup>
 import colors from "~/data/colors.json";
 import patterns from "~/data/patterns.json";
+import fonts from "~/data/fonts.json";
 
 const settingsStore = useSettingsStore();
 const { data: settings } = storeToRefs(settingsStore);
@@ -47,6 +48,26 @@ const { data: settings } = storeToRefs(settingsStore);
         </USelectMenu>
       </UFormGroup>
     </div>
+
+    <UFormGroup label="Typographie">
+      <USelectMenu
+        v-model="settings.font"
+        :options="fonts"
+        option-attribute="name"
+      >
+        <template #label>
+          <span class="truncate" :class="`font-${settings.font.id}`">{{
+            settings.font.name
+          }}</span>
+        </template>
+
+        <template #option="{ option: font }">
+          <span class="truncate" :class="`font-${font.id}`">{{
+            font.name
+          }}</span>
+        </template>
+      </USelectMenu>
+    </UFormGroup>
 
     <h4>Contenu</h4>
 
