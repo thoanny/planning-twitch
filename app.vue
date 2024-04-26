@@ -122,7 +122,6 @@ const handleDownloadImage = (orientation) => {
                 :src="imageLandscape"
                 v-if="imageLandscape"
                 @contextmenu.prevent="handleDownloadImage('landscape')"
-                class="rounded-lg"
               />
 
               <div class="hidden">
