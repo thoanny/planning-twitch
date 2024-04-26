@@ -50,6 +50,14 @@ const isOpen = ref(false);
             (library)
           </li>
           <li>
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage"
+              target="_blank"
+              >localStorage</a
+            >
+            (api)
+          </li>
+          <li>
             <a href="https://ui.nuxt.com" target="_blank">Nuxt UI</a> (library)
           </li>
           <li>
@@ -57,12 +65,12 @@ const isOpen = ref(false);
             (framework)
           </li>
           <li>
-            <a
-              href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage"
-              target="_blank"
-              >localStorage</a
-            >
-            (api)
+            <a href="https://heroicons.com" target="_blank">Heroicons</a>
+            (ressource)
+          </li>
+          <li>
+            <a href="https://heropatterns.com" target="_blank">Hero Patterns</a>
+            (ressource)
           </li>
         </ul>
       </div>
