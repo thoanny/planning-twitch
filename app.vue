@@ -3,6 +3,17 @@ import domtoimage from "dom-to-image-more";
 import debounce from "lodash/debounce";
 import days from "~/data/days.json";
 
+useSeoMeta({
+  title: "Planning Twitch | Thoanny",
+  ogTitle: "Planning Twitch | Thoanny",
+  description:
+    "Générateur de planning Twitch personnalisé et gratuit, aux formats paysage et portrait, pour une large diffusion sur vos réseaux sociaux numériques.",
+  ogDescription:
+    "Générateur de planning Twitch personnalisé et gratuit, aux formats paysage et portrait, pour une large diffusion sur vos réseaux sociaux numériques.",
+  ogImage: "/planning-twitch.jpg",
+  twitterCard: "summary_large_image",
+});
+
 const runtimeConfig = useRuntimeConfig();
 
 const renders = [
