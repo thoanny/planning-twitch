@@ -411,7 +411,7 @@ const handleDownloadImage = (orientation) => {
                           :class="[
                             `bg-${settings.background.color.id}-700 border-${settings.background.color.id}-800`,
                             settings.borderRadius ? 'rounded-xl' : '',
-                            'flex flex-col grow border-2 text-white items-center justify-end relative overflow-hidden',
+                            'flex flex-col w-full border-2 text-white items-center justify-end relative overflow-hidden',
                           ]"
                         >
                           <div
@@ -427,7 +427,7 @@ const handleDownloadImage = (orientation) => {
                               <span v-if="event.end">
                                 &bull; {{ event.end }}</span
                               >
-                              &ndash;
+                              <br />
                             </span>
                             {{ event.title }}
                           </div>
