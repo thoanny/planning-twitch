@@ -151,7 +151,7 @@ const handleDownloadImage = (orientation) => {
                     class="text-6xl uppercase text-center"
                     v-text="settings.title.text"
                   ></div>
-                  <div class="flex h-full w-full gap-8 max-w-[1536px]">
+                  <div class="flex h-full w-full gap-8 max-w-[1720px]">
                     <div
                       class="flex flex-col overflow-hidden"
                       :class="[
@@ -224,7 +224,7 @@ const handleDownloadImage = (orientation) => {
                           :class="[
                             `bg-${settings.background.color.id}-700 text-${settings.background.color.id}-500`,
                             settings.borderRadius ? 'rounded-xl' : '',
-                            'flex grow items-center justify-center text-4xl font-bold uppercase tracking-widest',
+                            'flex grow items-center justify-center text-3xl font-bold uppercase tracking-widest',
                           ]"
                           style="
                             writing-mode: vertical-rl;
@@ -373,7 +373,7 @@ const handleDownloadImage = (orientation) => {
                 <div
                   :class="[
                     `bg-${settings.background.color.id}-600 text-${settings.background.color.id}-50 bg-pattern-${settings.background.pattern.id}`,
-                    'text-white flex flex-col items-center justify-center h-full w-full p-16 gap-12',
+                    'text-white flex flex-col items-center justify-center h-full w-full p-16 pt-[11rem] pb-[8rem] gap-12',
                   ]"
                   ref="portrait"
                   id="portrait"
@@ -445,7 +445,7 @@ const handleDownloadImage = (orientation) => {
                           :class="[
                             `bg-${settings.background.color.id}-700 text-${settings.background.color.id}-500`,
                             settings.borderRadius ? 'rounded-xl' : '',
-                            'flex grow items-center justify-center text-4xl font-bold uppercase tracking-widest',
+                            'flex grow items-center justify-center text-3xl font-bold uppercase tracking-widest',
                           ]"
                         >
                           Hors ligne
