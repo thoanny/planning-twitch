@@ -109,6 +109,22 @@ const handleDownloadImage = (orientation) => {
 
   link.click();
 };
+
+const toast = useToast();
+
+const handleEventImageError = (e) => {
+  console.log(e);
+  toast.add({
+    id: e.target.alt,
+    title: "Erreur",
+    description:
+      "Impossible de charger l'image de l'événément \"" + e.target.alt + '"',
+    icon: "i-heroicons-exclamation-triangle",
+    timeout: 10000,
+    color: "red",
+  });
+  e.target.src = "/image-error.png";
+};
 </script>
 
 <template>
@@ -216,8 +232,9 @@ const handleDownloadImage = (orientation) => {
 
                           <img
                             :src="event.image"
-                            alt=""
+                            :alt="event.title"
                             v-if="event.image"
+                            @error="handleEventImageError"
                             class="w-full h-full object-cover absolute top-0 left-0 z-10"
                           />
                         </div>
@@ -437,8 +454,9 @@ const handleDownloadImage = (orientation) => {
 
                           <img
                             :src="event.image"
-                            alt=""
+                            :alt="event.title"
                             v-if="event.image"
+                            @error="handleEventImageError"
                             class="w-full h-full object-cover absolute top-0 left-0 z-10"
                           />
                         </div>
@@ -495,6 +513,7 @@ const handleDownloadImage = (orientation) => {
         </template>
       </UTabs>
     </div>
+    <UNotifications />
   </div>
 </template>
 
