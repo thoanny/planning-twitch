@@ -208,6 +208,10 @@ h4 {
   @apply bg-primary-50 text-primary-500 rounded text-sm py-2 px-3 font-semibold mb-2 uppercase tracking-wide;
 }
 
+.aspect-video {
+  aspect-ratio: 16/9;
+}
+
 @media screen(lg) {
   .lg\:aspect-video {
     aspect-ratio: 16/9;

@@ -136,6 +136,9 @@ const handleDownloadImage = (orientation) => {
                 v-if="imageLandscape"
                 @contextmenu.prevent="handleDownloadImage('landscape')"
               />
+              <div class="aspect-video flex items-center justify-center" v-else>
+                <UProgress animation="swing" class="max-w-xl" />
+              </div>
 
               <div class="hidden">
                 <div
