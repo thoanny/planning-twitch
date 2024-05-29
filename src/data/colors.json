@@ -1,0 +1,19 @@
+[
+  { "code": "red", "name": "Rouge" },
+  { "code": "orange", "name": "Orange" },
+  { "code": "amber", "name": "Ambre" },
+  { "code": "yellow", "name": "Jaune" },
+  { "code": "lime", "name": "Citron" },
+  { "code": "green", "name": "Vert" },
+  { "code": "emerald", "name": "Émeraude" },
+  { "code": "teal", "name": "Thé" },
+  { "code": "cyan", "name": "Cyan" },
+  { "code": "sky", "name": "Ciel" },
+  { "code": "blue", "name": "Bleu" },
+  { "code": "indigo", "name": "Indigo" },
+  { "code": "violet", "name": "Violet 1" },
+  { "code": "purple", "name": "Violet 2" },
+  { "code": "fuchsia", "name": "Fuchsia" },
+  { "code": "pink", "name": "Rose 1" },
+  { "code": "rose", "name": "Rose 2" }
+]

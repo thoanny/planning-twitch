@@ -1,0 +1,14 @@
+[
+  { "code": "twitch", "name": "Twitch" },
+  { "code": "facebook", "name": "Facebook" },
+  { "code": "instagram", "name": "Instagram" },
+  { "code": "x-twitter", "name": "X (Twitter)" },
+  { "code": "youtube", "name": "YouTube" },
+  { "code": "tiktok", "name": "TikTok" },
+  { "code": "snapchat", "name": "Snapchat" },
+  { "code": "discord", "name": "Discord" },
+  { "code": "linktree", "name": "Linktr.ee" },
+  { "code": "patreon", "name": "Patreon" },
+  { "code": "kofi", "name": "Ko-fi" },
+  { "code": "website", "name": "Site internet" }
+]

@@ -1,0 +1,10 @@
+[
+  { "name": "Modèle", "code": "template" },
+  { "name": "Lundi", "code": "monday" },
+  { "name": "Mardi", "code": "tuesday" },
+  { "name": "Mercredi", "code": "wednesday" },
+  { "name": "Jeudi", "code": "thursday" },
+  { "name": "Vendredi", "code": "friday" },
+  { "name": "Samedi", "code": "saturday" },
+  { "name": "Dimanche", "code": "sunday" }
+]
