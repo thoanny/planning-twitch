@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-size: 14px;
+}
+
+// --text-color:	          Font text color.
+// --text-secondary-color:	Muted font text color with a secondary level.
+// --primary-color:	        Primary color of the theme.
+// --primary-color-text:	  Text color when background is primary color.
+// --font-family:	          Font family of the theme.
+// --inline-spacing:	      Spacing between to adjacent items.
+// --border-radius:	        Common border radius of elements.
+// --focus-ring:	          Box shadow of a focused element.
+// --mask-bg:	              Background of an overlay mask.
+// --highlight-bg:	        Background of a highlighted element.
+// --highlight-text-color:	Text color of a highlighted element.
+
+// --surface-ground:	      Base ground color.
+// --surface-section:	      Background color of a section on a ground surface.
+// --surface-card:	        Color of a surface used as a card.
+// --surface-overlay:	      Color of overlay surfaces.
+// --surface-border:	      Color of a divider.
+// --surface-hover:	        Color of an element in hover state.
