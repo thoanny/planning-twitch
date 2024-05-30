@@ -11,14 +11,14 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "@formkit/drag-and-drop": "^0.0.38",
     "dom-to-image-more": "^3.3.0",
     "pinia": "^2.1.7",
     "pinia-plugin-persistedstate": "^3.2.1",
     "primeicons": "^7.0.0",
     "primevue": "^3.52.0",
     "uuid": "^9.0.1",
-    "vue": "^3.4.21"
+    "vue": "^3.4.21",
+    "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.8.0",

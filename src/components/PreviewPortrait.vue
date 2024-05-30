@@ -53,15 +53,15 @@ const handleDownloadImage = () => {
   link.click();
 };
 
-console.log(eventsByDay('monday'));
-
 loadLandscapeImage();
 </script>
 
 <template>
+  <div v-if="!imagePortrait" class="flex w-full h-full items-center justify-center">
+    Chargement en cours...
+  </div>
   <Image
     :src="imagePortrait"
-    v-if="imagePortrait"
     alt="Image"
     :pt="{
       image: { class: 'w-full object-contain lg:aspect-video block' },
@@ -69,6 +69,7 @@ loadLandscapeImage();
     }"
     preview
     @contextmenu.prevent="handleDownloadImage()"
+    v-else
   />
 
   <div class="hidden">

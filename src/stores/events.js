@@ -7,6 +7,7 @@ export const useEventsStore = defineStore(
   'events',
   () => {
     const data = ref([]);
+    const showTemplates = ref(true);
 
     const defaultEvent = {
       uid: '',
@@ -17,15 +18,15 @@ export const useEventsStore = defineStore(
       day: days.find((d) => d.code === 'template'),
     };
 
-    const onAddEvent = (event) => {
-      event.uid = uuidv4();
-      data.value.push(event);
-    };
-
-    const onEditEvent = (event) => {
-      const idx = data.value.findIndex((e) => e.uid === event.uid);
-      if (idx < 0) return;
-      data.value[idx] = event;
+    const onSaveEvent = (event) => {
+      if (!event.uid) {
+        event.uid = uuidv4();
+        data.value.push(event);
+      } else {
+        const idx = data.value.findIndex((e) => e.uid === event.uid);
+        if (idx < 0) return;
+        data.value[idx] = event;
+      }
     };
 
     const onDuplicateEvent = (uid) => {
@@ -42,17 +43,17 @@ export const useEventsStore = defineStore(
 
     return {
       data,
+      showTemplates,
       defaultEvent,
-      onAddEvent,
+      onSaveEvent,
       onDuplicateEvent,
-      onEditEvent,
       onDeleteEvent,
     };
   },
   {
     persist: {
       key: 'events-v2',
-      paths: ['data'],
+      paths: ['data', 'showTemplates'],
     },
   },
 );

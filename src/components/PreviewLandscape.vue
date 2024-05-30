@@ -53,19 +53,20 @@ const handleDownloadImage = () => {
   link.click();
 };
 
-console.log(eventsByDay('monday'));
-
 loadLandscapeImage();
 </script>
 
 <template>
+  <div v-if="!imageLandscape" class="flex w-full h-full items-center justify-center">
+    Chargement en cours...
+  </div>
   <Image
     :src="imageLandscape"
-    v-if="imageLandscape"
     alt="Image"
     :pt="{ image: { class: 'w-full' } }"
     preview
     @contextmenu.prevent="handleDownloadImage()"
+    v-else
   />
 
   <div class="hidden">
