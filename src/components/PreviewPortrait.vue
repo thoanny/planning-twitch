@@ -83,7 +83,7 @@ loadLandscapeImage();
       id="portrait"
       style="width: 1080px; height: 1920px"
     >
-      <div class="text-5xl font-semibold uppercase text-center" v-text="settings.title"></div>
+      <div class="text-6xl font-semibold uppercase text-center" v-text="settings.title"></div>
       <div class="flex flex-col h-full w-full gap-4 container">
         <div
           class="flex flex-col overflow-hidden min-h-36"
