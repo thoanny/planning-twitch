@@ -17,6 +17,11 @@ const { data: settings } = storeToRefs(settingsStore);
 
 <template>
   <div>
+    <div class="flex flex-col gap-2 mb-4">
+      <label for="title">Titre du planning</label>
+      <InputText id="title" v-model="settings.title" autocomplete="off" />
+    </div>
+
     <h4>Apparence</h4>
 
     <div class="flex align-items-center gap-2 mb-4">
@@ -86,19 +91,29 @@ const { data: settings } = storeToRefs(settingsStore);
       </Dropdown>
     </div>
 
-    <h4>Contenu</h4>
+    <h4>Masquer les jours sans événement</h4>
 
-    <div class="flex flex-col gap-2 mb-4">
-      <label for="title">Titre du planning</label>
-      <InputText id="title" v-model="settings.title" autocomplete="off" />
+    <div class="flex gap-4 items-center">
+      <div class="flex align-items-center gap-2 mb-4">
+        <Checkbox
+          v-model="settings.hideEmptyLandscape"
+          inputId="hide-empty-landscape"
+          :binary="true"
+        />
+        <label for="hide-empty-landscape"> Paysage </label>
+      </div>
+
+      <div class="flex align-items-center gap-2 mb-4">
+        <Checkbox
+          v-model="settings.hideEmptyPortrait"
+          inputId="hide-empty-portrait"
+          :binary="true"
+        />
+        <label for="hide-empty-portrait"> Portrait </label>
+      </div>
     </div>
 
-    <div class="flex align-items-center gap-2 mb-4">
-      <Checkbox v-model="settings.hideEmpty" inputId="hide-empty" :binary="true" />
-      <label for="hide-empty"> Masquer les jours sans événement </label>
-    </div>
-
-    <h4>Réseaux sociaux</h4>
+    <h4>Réseaux sociaux numériques</h4>
 
     <div class="flex flex-col gap-2">
       <div class="grid grid-cols-2 gap-2" v-for="i in [0, 1, 2, 3, 4]">
@@ -106,7 +121,7 @@ const { data: settings } = storeToRefs(settingsStore);
           v-model="settings.links[i].type"
           :options="socials"
           optionLabel="name"
-          placeholder="Réseau social / Lien"
+          placeholder="Type"
           class="w-full"
         />
         <InputText

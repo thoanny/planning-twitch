@@ -84,7 +84,7 @@ loadLandscapeImage();
           class="flex flex-col overflow-hidden"
           :class="[
             !eventsByDay(day.code).length ? 'basis-1/3' : 'basis-full',
-            settings.hideEmpty && !eventsByDay(day.code).length ? 'hidden' : '',
+            settings.hideEmptyLandscape && !eventsByDay(day.code).length ? 'hidden' : '',
           ]"
           v-for="day in days.filter((day) => day.code !== 'template')"
           :key="day.code"
