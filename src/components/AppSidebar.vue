@@ -16,6 +16,8 @@ import SidebarSettings from '@/components/SidebarSettings.vue';
         <SidebarSettings />
       </TabPanel>
     </TabView>
+    <!-- TODO : ajouter les liens : T-potes, Crédits, Source -->
+    <!-- TODO : ajouter un nouveau lien : aide -->
   </div>
 </template>
 

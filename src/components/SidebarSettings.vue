@@ -70,6 +70,9 @@ const { data: settings } = storeToRefs(settingsStore);
       </div>
     </div>
 
+    <!-- TODO : Ajouter une URL pour une image de fond custom -->
+    <!-- TODO : Ajouter une URL pour un logo + positionnement du logo (gauche/droite) -->
+
     <div class="flex flex-col w-full gap-2 mb-4">
       <label>Typographie</label>
 
