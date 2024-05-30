@@ -1,12 +1,20 @@
 <script setup>
-const props = defineProps(['name']);
+const props = defineProps({
+  name: String,
+  size: {
+    type: String,
+    default() {
+      return 'w-16 h-16';
+    },
+  },
+});
 </script>
 
 <template>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 448 512"
-    class="w-16 h-16"
+    :class="size"
     fill="currentColor"
     v-if="name === 'instagram'"
   >
@@ -17,7 +25,7 @@ const props = defineProps(['name']);
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 512 512"
-    class="w-16 h-16"
+    :class="size"
     fill="currentColor"
     v-else-if="name === 'x-twitter'"
   >
@@ -28,7 +36,7 @@ const props = defineProps(['name']);
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 576 512"
-    class="w-16 h-16"
+    :class="size"
     fill="currentColor"
     v-else-if="name === 'youtube'"
   >
@@ -39,7 +47,7 @@ const props = defineProps(['name']);
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 448 512"
-    class="w-16 h-16"
+    :class="size"
     fill="currentColor"
     v-else-if="name === 'tiktok'"
   >
@@ -50,7 +58,7 @@ const props = defineProps(['name']);
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 512 512"
-    class="w-16 h-16"
+    :class="size"
     fill="currentColor"
     v-else-if="name === 'twitch'"
   >
@@ -61,7 +69,7 @@ const props = defineProps(['name']);
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 320 512"
-    class="w-16 h-16"
+    :class="size"
     fill="currentColor"
     v-else-if="name === 'facebook'"
   >
@@ -72,7 +80,7 @@ const props = defineProps(['name']);
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 512 512"
-    class="w-16 h-16"
+    :class="size"
     fill="currentColor"
     v-else-if="name === 'snapchat'"
   >
@@ -83,7 +91,7 @@ const props = defineProps(['name']);
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 640 512"
-    class="w-16 h-16"
+    :class="size"
     fill="currentColor"
     v-else-if="name === 'discord'"
   >
@@ -94,7 +102,7 @@ const props = defineProps(['name']);
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 640 512"
-    class="w-16 h-16"
+    :class="size"
     fill="currentColor"
     v-else-if="name === 'website'"
   >
@@ -106,7 +114,7 @@ const props = defineProps(['name']);
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
     xml:space="preserve"
-    class="w-16 h-16"
+    :class="size"
     fill="currentColor"
     v-else-if="name === 'linktree'"
   >
@@ -117,7 +125,7 @@ const props = defineProps(['name']);
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 436 476"
-    class="w-16 h-16"
+    :class="size"
     fill="currentColor"
     v-else-if="name === 'patreon'"
   >
@@ -129,7 +137,7 @@ const props = defineProps(['name']);
   <svg
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
-    class="w-16 h-16"
+    :class="size"
     fill="currentColor"
     v-else-if="name === 'kofi'"
   >

@@ -72,13 +72,13 @@ loadLandscapeImage();
     <div
       :class="[
         `font-${settings.font.code} bg-${settings.color.code}-600 text-${settings.color.code}-50 bg-pattern-${settings.pattern.code}`,
-        'text-white flex flex-col items-center justify-center h-full w-full p-8 py-16 gap-12',
+        'text-white flex flex-col items-center justify-center h-full w-full p-8 py-20 gap-12',
       ]"
       ref="landscape"
       id="landscape"
       style="width: 1920px; height: 1080px"
     >
-      <div class="text-6xl uppercase text-center" v-text="settings.title"></div>
+      <div class="text-7xl uppercase text-center" v-text="settings.title"></div>
       <div class="flex h-full w-full gap-8 max-w-[1720px]">
         <div
           class="flex flex-col overflow-hidden"

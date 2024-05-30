@@ -76,7 +76,7 @@ loadLandscapeImage();
     <div
       :class="[
         `font-${settings.font.code} bg-${settings.color.code}-600 text-${settings.color.code}-50 bg-pattern-${settings.pattern.code}`,
-        'text-white flex flex-col items-center justify-center h-full w-full p-16 pt-[11rem] pb-[8rem] gap-12',
+        'text-white flex flex-col items-center justify-center h-full w-full p-16 pt-[12rem] pb-[9rem] gap-12',
       ]"
       ref="portrait"
       id="portrait"
@@ -157,13 +157,11 @@ loadLandscapeImage();
           ]"
         >
           <div class="flex items-center">
-            <IconLink :name="link.type.code" />
+            <IconLink :name="link.type.code" :size="'w-12 h-12'" />
           </div>
-          <div class="tracking-wide" :class="{ uppercase: link.type.code !== 'discord' }">
-            <div class="text-xl">
-              {{ link.type.code === 'twitch' ? 'Rendez-vous sur' : link.type.name }}
-            </div>
-            <div class="text-2xl font-semibold">
+          <div class="tracking-wide uppercase flex gap-2 items-center text-3xl">
+            <div>Rendez-vous sur</div>
+            <div class="font-semibold">
               {{ link.value }}
             </div>
           </div>
