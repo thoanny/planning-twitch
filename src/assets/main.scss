@@ -63,3 +63,51 @@ body {
 .p-inputtext[type='time'] {
   height: 2.3575rem;
 }
+
+.text-primary {
+  color: var(--primary-color);
+}
+
+.v-tour {
+  &__target--highlighted {
+    @apply ring-2 ring-offset-2 rounded;
+    --tw-ring-color: var(--primary-500);
+    --tw-ring-offset-color: var(--primary-50);
+  }
+
+  .v-step {
+    @apply rounded-lg leading-6 p-4;
+    background: var(--primary-600);
+
+    &__header {
+      @apply py-2 rounded-t-lg -m-4 mb-0 font-semibold text-lg;
+      background: var(--primary-700);
+    }
+
+    &__content {
+      @apply py-3 mb-0;
+    }
+
+    &__buttons {
+      @apply flex justify-center gap-2;
+    }
+
+    &__button {
+      @apply text-base h-auto py-2 px-4 m-0 rounded-md;
+      font-family: inherit;
+      line-height: 1;
+    }
+
+    &__arrow {
+      &:before {
+        background: var(--primary-700);
+      }
+    }
+
+    &[data-popper-placement='left-start'] .v-step__arrow {
+      top: 1rem !important;
+      transform: none !important;
+      right: 0;
+    }
+  }
+}

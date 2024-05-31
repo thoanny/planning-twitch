@@ -7,7 +7,7 @@ import TabPanel from 'primevue/tabpanel';
 
 <template>
   <div class="flex-1">
-    <TabView class="shadow rounded-xl overflow-hidden">
+    <TabView class="shadow rounded-xl overflow-hidden" data-step="4">
       <TabPanel header="Paysage (1920 × 1080 px)">
         <div class="aspect-video w-full h-full bg-pattern-transparent rounded-lg border p-4">
           <PreviewLandscape />

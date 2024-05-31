@@ -118,6 +118,8 @@ const { data: settings } = storeToRefs(settingsStore);
 
     <h4>Réseaux sociaux numériques</h4>
 
+    <!-- TODO : utiliser vuedraggable pour changer l'ordre -->
+
     <div class="flex flex-col gap-2">
       <div class="grid grid-cols-2 gap-2" v-for="i in [0, 1, 2, 3, 4]">
         <Dropdown

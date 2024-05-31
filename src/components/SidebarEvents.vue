@@ -91,8 +91,9 @@ const showModal = (type) => {
         icon="pi pi-plus"
         size="small"
         @click="showModal('add')"
+        data-step="1"
       />
-      <div class="flex gap-2 items-center">
+      <div class="flex gap-2 items-center" data-step="2">
         <span>Modèles</span>
         <InputSwitch v-model="showTemplates" />
       </div>
@@ -163,15 +164,7 @@ const showModal = (type) => {
       </form>
     </Dialog>
 
-    <draggable
-      v-model="events"
-      group="people"
-      @start="drag = true"
-      @end="drag = false"
-      item-key="uid"
-      class="mt-4 space-y-2"
-      v-if="events.length > 0"
-    >
+    <draggable v-model="events" item-key="uid" class="mt-4 space-y-2" data-step="3">
       <template #item="{ element: event }">
         <Card
           class="border shadow-none"

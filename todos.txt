@@ -1,10 +1,8 @@
 └─ planning-twitch
    ├─ src
-   │  ├─ AppSidebar.vue
-   │  │  ├─ line 19: TODO : ajouter les liens : T-potes, Crédits, Source
-   │  │  └─ line 20: TODO : ajouter un nouveau lien : aide
    │  └─ SidebarSettings.vue
    │     ├─ line 73: TODO : Ajouter une URL pour une image de fond custom
-   │     └─ line 74: TODO : Ajouter une URL pour un logo + positionnement du logo (gauche/droite)
+   │     ├─ line 74: TODO : Ajouter une URL pour un logo + positionnement du logo (gauche/droite)
+   │     └─ line 121: TODO : utiliser vuedraggable pour changer l'ordre
    └─ index.html
-      └─ line 5: TODO : mettre à jour les balises pour le SEO
+      └─ line 38: TODO : Ajouter Matomo

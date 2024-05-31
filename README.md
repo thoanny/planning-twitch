@@ -1,14 +1,17 @@
-# vue-project
+# 📅 Planning Twitch
 
-This template should help get you started developing with Vue 3 in Vite.
+## Crédits
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+- [Vue.js](https://nuxt.com/) (framework)
+- [Pinia](https://pinia.vuejs.org/) (library)
+- [dom-to-image-more](https://github.com/1904labs/dom-to-image-more) (library)
+- [pinia-plugin-persistedstate](https://github.com/prazdevs/pinia-plugin-persistedstate) (library)
+- [vuedraggable@next](https://github.com/SortableJS/vue.draggable.next) (library)
+- [Vue Tour](https://github.com/alexandreDavid/vue3-tour)
+- [PrimeVue](https://primevue.org) (library)
+- [TailwindCSS](https://tailwindcss.com/) (framework)
+- [Heroicons](https://heroicons.com/) (ressource)
+- [Hero Patterns](https://heropatterns.com/) (ressource)
 
 ## Project Setup
 
