@@ -1,20 +1,23 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 
-import colors from '@/data/colors.json';
-import patterns from '@/data/patterns.json';
-import fonts from '@/data/fonts.json';
-
 export const useSettingsStore = defineStore(
   'settings',
   () => {
     const data = ref({
       rounded: true,
-      color: colors.find((color) => color.code === 'purple'),
-      pattern: patterns.find((pattern) => pattern.code === 'topography'),
-      font: fonts.find((font) => font.code === 'sans'),
+      color: {},
+      pattern: {},
+      font: {},
       title: 'Mon planning Twitch',
-      hideEmpty: false,
+      hideEmpty: {
+        landscape: false,
+        portrait: false,
+      },
+      background: {
+        landscape: '',
+        portrait: '',
+      },
       links: [
         {
           type: '',

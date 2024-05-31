@@ -13,6 +13,16 @@ import socials from '@/data/socials.json';
 
 const settingsStore = useSettingsStore();
 const { data: settings } = storeToRefs(settingsStore);
+
+if (!settings.value.pattern?.code) {
+  settings.value.pattern = patterns.find((pattern) => pattern.code === 'topography');
+}
+if (!settings.value.color?.code) {
+  settings.value.color = colors.find((color) => color.code === 'purple');
+}
+if (!settings.value.font?.code) {
+  settings.value.font = fonts.find((font) => font.code === 'sans');
+}
 </script>
 
 <template>
@@ -70,6 +80,26 @@ const { data: settings } = storeToRefs(settingsStore);
       </div>
     </div>
 
+    <div class="flex flex-col gap-2 mb-4" v-if="settings.pattern.code === 'custom'">
+      <label for="background-landscape">Image de fond (paysage)</label>
+      <InputText
+        id="background-landscape"
+        v-model="settings.background.landscape"
+        type="url"
+        autocomplete="off"
+      />
+    </div>
+
+    <div class="flex flex-col gap-2 mb-4" v-if="settings.pattern.code === 'custom'">
+      <label for="background-landscape">Image de fond (portrait)</label>
+      <InputText
+        id="background-landscape"
+        v-model="settings.background.portrait"
+        type="url"
+        autocomplete="off"
+      />
+    </div>
+
     <!-- TODO : Ajouter une URL pour une image de fond custom -->
     <!-- TODO : Ajouter une URL pour un logo + positionnement du logo (gauche/droite) -->
 
@@ -99,7 +129,7 @@ const { data: settings } = storeToRefs(settingsStore);
     <div class="flex gap-4 items-center">
       <div class="flex align-items-center gap-2 mb-4">
         <Checkbox
-          v-model="settings.hideEmptyLandscape"
+          v-model="settings.hideEmpty.landscape"
           inputId="hide-empty-landscape"
           :binary="true"
         />
@@ -108,7 +138,7 @@ const { data: settings } = storeToRefs(settingsStore);
 
       <div class="flex align-items-center gap-2 mb-4">
         <Checkbox
-          v-model="settings.hideEmptyPortrait"
+          v-model="settings.hideEmpty.portrait"
           inputId="hide-empty-portrait"
           :binary="true"
         />

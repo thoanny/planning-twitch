@@ -79,13 +79,19 @@ loadLandscapeImage();
       id="landscape"
       style="width: 1920px; height: 1080px"
     >
-      <div class="text-7xl uppercase text-center" v-text="settings.title"></div>
-      <div class="flex h-full w-full gap-8 max-w-[1720px]">
+      <div
+        class="w-full h-full absolute top-0"
+        v-if="settings.pattern.code === 'custom' && settings.background.landscape"
+      >
+        <img :src="settings.background.landscape" class="object-cover w-full h-full" alt="" />
+      </div>
+      <div class="text-7xl uppercase text-center relative z-20" v-text="settings.title"></div>
+      <div class="flex h-full w-full gap-8 max-w-[1720px] relative z-20">
         <div
           class="flex flex-col overflow-hidden"
           :class="[
             !eventsByDay(day.code).length ? 'basis-1/3' : 'basis-full',
-            settings.hideEmptyLandscape && !eventsByDay(day.code).length ? 'hidden' : '',
+            settings.hideEmpty.landscape && !eventsByDay(day.code).length ? 'hidden' : '',
           ]"
           v-for="day in days.filter((day) => day.code !== 'template')"
           :key="day.code"
@@ -149,7 +155,7 @@ loadLandscapeImage();
           </div>
         </div>
       </div>
-      <div class="flex items-center gap-12">
+      <div class="flex items-center gap-12 relative z-20">
         <div
           class="flex gap-4 items-center whitespace-nowrap"
           v-for="link in settings.links.filter((l) => l.type && l.value)"

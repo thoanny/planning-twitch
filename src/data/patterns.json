@@ -1,5 +1,6 @@
 [
   { "code": "none", "name": "- Aucun -" },
+  { "code": "custom", "name": "- Personnalisée -" },
   { "code": "4-point-stars", "name": "4 point stars" },
   { "code": "anchors-away", "name": "Anchors away" },
   { "code": "automn", "name": "Automn" },

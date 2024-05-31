@@ -23,7 +23,7 @@ const eventsByDay = (day) => {
   return events.value.filter((event) => event.day.code === day);
 };
 
-const loadLandscapeImage = debounce(() => {
+const loadPortraitImage = debounce(() => {
   domtoimage
     .toPng(document.querySelector('#portrait'), {
       width: 1080,
@@ -39,11 +39,11 @@ const loadLandscapeImage = debounce(() => {
 }, 500);
 
 eventsStore.$subscribe(() => {
-  loadLandscapeImage();
+  loadPortraitImage();
 });
 
 settingsStore.$subscribe(() => {
-  loadLandscapeImage();
+  loadPortraitImage();
 });
 
 const handleDownloadImage = () => {
@@ -53,7 +53,7 @@ const handleDownloadImage = () => {
   link.click();
 };
 
-loadLandscapeImage();
+loadPortraitImage();
 </script>
 
 <template>
@@ -73,23 +73,31 @@ loadLandscapeImage();
   />
 
   <div class="hidden">
-    <!-- <div> -->
     <div
       :class="[
         `font-${settings.font.code} bg-${settings.color.code}-600 text-${settings.color.code}-50 bg-pattern-${settings.pattern.code}`,
-        'text-white flex flex-col items-center justify-center h-full w-full p-16 pt-[12rem] pb-[9rem] gap-12',
+        'relative text-white flex flex-col items-center justify-center h-full w-full p-16 pt-[12rem] pb-[9rem] gap-12',
       ]"
       ref="portrait"
       id="portrait"
       style="width: 1080px; height: 1920px"
     >
-      <div class="text-6xl font-semibold uppercase text-center" v-text="settings.title"></div>
-      <div class="flex flex-col h-full w-full gap-4 container">
+      <div
+        class="w-full h-full absolute top-0"
+        v-if="settings.pattern.code === 'custom' && settings.background.portrait"
+      >
+        <img :src="settings.background.portrait" class="object-cover w-full h-full" alt="" />
+      </div>
+      <div
+        class="text-6xl font-semibold uppercase text-center relative z-20"
+        v-text="settings.title"
+      ></div>
+      <div class="flex flex-col h-full w-full gap-4 container relative z-20">
         <div
           class="flex flex-col overflow-hidden min-h-36"
           :class="[
             !eventsByDay(day.code).length ? 'basis-1/3' : 'basis-full',
-            settings.hideEmptyPortrait && !eventsByDay(day.code).length ? 'hidden' : '',
+            settings.hideEmpty.portrait && !eventsByDay(day.code).length ? 'hidden' : '',
           ]"
           v-for="day in days.filter((d) => d.code !== 'template')"
           :key="day.code"
@@ -146,7 +154,7 @@ loadLandscapeImage();
         </div>
       </div>
 
-      <div class="flex items-center gap-12">
+      <div class="flex items-center gap-12 relative z-20">
         <div
           class="flex gap-4 items-center whitespace-nowrap"
           v-for="link in settings.links.filter((l) => l.type.code === 'twitch' && l.value)"
