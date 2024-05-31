@@ -1,7 +1,6 @@
 └─ planning-twitch
    ├─ src
    │  └─ SidebarSettings.vue
-   │     ├─ line 103: TODO : Ajouter une URL pour un logo + positionnement du logo (gauche/droite)
-   │     └─ line 150: TODO : utiliser vuedraggable pour changer l'ordre
+   │     └─ line 163: TODO : utiliser vuedraggable pour changer l'ordre
    └─ index.html
       └─ line 38: TODO : Ajouter Matomo
