@@ -5,6 +5,8 @@ export const useSettingsStore = defineStore(
   'settings',
   () => {
     const data = ref({
+      logo: '',
+      align: false,
       rounded: true,
       color: {},
       pattern: {},

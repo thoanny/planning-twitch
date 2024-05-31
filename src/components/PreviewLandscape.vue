@@ -85,7 +85,23 @@ loadLandscapeImage();
       >
         <img :src="settings.background.landscape" class="object-cover w-full h-full" alt="" />
       </div>
-      <div class="text-7xl uppercase text-center relative z-20" v-text="settings.title"></div>
+      <div
+        class="flex gap-12 justify-between w-full items-center relative z-20 max-w-[1720px]"
+        :class="{ 'flex-row-reverse': settings.align === false }"
+      >
+        <div
+          class="flex-1 text-7xl uppercase"
+          v-text="settings.title"
+          :class="{
+            'text-left': settings.logo && settings.align,
+            'text-center': !settings.logo,
+            'text-right': settings.logo && !settings.align,
+          }"
+        ></div>
+        <div v-if="settings.logo">
+          <img :src="settings.logo" class="max-h-44" alt="" />
+        </div>
+      </div>
       <div class="flex h-full w-full gap-8 max-w-[1720px] relative z-20">
         <div
           class="flex flex-col overflow-hidden"

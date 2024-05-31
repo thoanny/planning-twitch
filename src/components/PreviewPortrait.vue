@@ -89,9 +89,23 @@ loadPortraitImage();
         <img :src="settings.background.portrait" class="object-cover w-full h-full" alt="" />
       </div>
       <div
-        class="text-6xl font-semibold uppercase text-center relative z-20"
-        v-text="settings.title"
-      ></div>
+        class="flex gap-12 justify-between w-full items-center relative z-20"
+        :class="{ 'flex-row-reverse': settings.align === false }"
+      >
+        <div
+          class="flex-1 text-6xl font-semibold uppercase"
+          v-text="settings.title"
+          :class="{
+            'text-left': settings.logo && settings.align,
+            'text-center': !settings.logo,
+            'text-right': settings.logo && !settings.align,
+          }"
+        ></div>
+        <div v-if="settings.logo">
+          <img :src="settings.logo" class="max-h-40" alt="" />
+        </div>
+      </div>
+
       <div class="flex flex-col h-full w-full gap-4 container relative z-20">
         <div
           class="flex flex-col overflow-hidden min-h-36"

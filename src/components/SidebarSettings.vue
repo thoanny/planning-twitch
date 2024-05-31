@@ -5,6 +5,7 @@ import { useSettingsStore } from '@/stores/settings.js';
 import Checkbox from 'primevue/checkbox';
 import Dropdown from 'primevue/dropdown';
 import InputText from 'primevue/inputtext';
+import ToggleButton from 'primevue/togglebutton';
 
 import colors from '@/data/colors.json';
 import patterns from '@/data/patterns.json';
@@ -33,6 +34,20 @@ if (!settings.value.font?.code) {
     </div>
 
     <h4>Apparence</h4>
+
+    <div class="flex flex-col gap-2 mb-4">
+      <label for="logo">Image du logo</label>
+      <div class="flex items-center gap-2">
+        <InputText id="logo" v-model="settings.logo" type="url" autocomplete="off" class="flex-1" />
+        <ToggleButton
+          v-model="settings.align"
+          onLabel=""
+          offLabel=""
+          onIcon="pi pi-align-right"
+          offIcon="pi pi-align-left"
+        />
+      </div>
+    </div>
 
     <div class="flex align-items-center gap-2 mb-4">
       <Checkbox v-model="settings.rounded" inputId="rounded" :binary="true" />
@@ -99,8 +114,6 @@ if (!settings.value.font?.code) {
         autocomplete="off"
       />
     </div>
-
-    <!-- TODO : Ajouter une URL pour un logo + positionnement du logo (gauche/droite) -->
 
     <div class="flex flex-col w-full gap-2 mb-4">
       <label>Typographie</label>
