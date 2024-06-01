@@ -93,7 +93,7 @@ loadPortraitImage();
         :class="{ 'flex-row-reverse': settings.align === false }"
       >
         <div
-          class="flex-1 text-6xl font-semibold uppercase"
+          class="flex-1 text-6xl font-semibold uppercase leading-tight"
           v-text="settings.title"
           :class="{
             'text-left': settings.logo && settings.align,
@@ -126,7 +126,7 @@ loadPortraitImage();
               :class="[
                 `bg-${settings.color.code}-700 border-${settings.color.code}-800`,
                 settings.rounded ? 'rounded-xl' : '',
-                'flex flex-col w-full border-2 text-white items-center justify-end relative overflow-hidden',
+                'flex flex-col w-full border-3 text-white items-center justify-end relative overflow-hidden',
               ]"
             >
               <div
@@ -185,7 +185,7 @@ loadPortraitImage();
           <div class="tracking-wide uppercase flex gap-2 items-center text-3xl">
             <div>Rendez-vous sur</div>
             <div class="font-semibold">
-              {{ link.value }}
+              {{ link.type.code === 'twitch' ? 'twitch.tv/' : '' }}{{ link.value }}
             </div>
           </div>
         </div>

@@ -172,7 +172,7 @@ const editEvent = (uid) => {
     <draggable v-model="events" item-key="uid" class="mt-4 space-y-2" data-step="3">
       <template #item="{ element: event }">
         <Card
-          class="border shadow-none"
+          class="border shadow-none cursor-pointer"
           :pt="{ body: { class: 'p-3 gap-2' } }"
           @click="editEvent(event.uid)"
           v-show="showTemplates || (!showTemplates && event.day.code !== 'template')"

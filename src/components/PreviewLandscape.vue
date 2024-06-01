@@ -90,7 +90,7 @@ loadLandscapeImage();
         :class="{ 'flex-row-reverse': settings.align === false }"
       >
         <div
-          class="flex-1 text-7xl uppercase"
+          class="flex-1 text-7xl uppercase leading-tight"
           v-text="settings.title"
           :class="{
             'text-left': settings.logo && settings.align,
@@ -122,7 +122,7 @@ loadLandscapeImage();
               :class="[
                 `bg-${settings.color.code}-700 border-${settings.color.code}-800`,
                 settings.rounded ? 'rounded-xl' : '',
-                'flex flex-col justify-between grow border-2 text-white items-center justify-center relative overflow-hidden',
+                'flex flex-col justify-between grow border-3 text-white items-center justify-center relative overflow-hidden',
               ]"
             >
               <div
@@ -190,7 +190,7 @@ loadLandscapeImage();
               {{ link.type.code === 'twitch' ? 'Rendez-vous sur' : link.type.name }}
             </div>
             <div class="text-2xl font-semibold">
-              {{ link.value }}
+              {{ link.type.code === 'twitch' ? 'twitch.tv/' : '' }}{{ link.value }}
             </div>
           </div>
         </div>
