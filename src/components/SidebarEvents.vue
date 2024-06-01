@@ -159,10 +159,12 @@ const editEvent = (uid) => {
         </div>
         <div class="flex justify-end items-center gap-2">
           <Button type="button" label="Annuler" severity="secondary" @click="resetEvent"></Button>
+          <Button type="submit" label="Ajouter" v-if="formType === 'add'" />
           <SplitButton
-            :label="formType === 'add' ? 'Ajouter' : 'Enregistrer'"
+            label="Enregistrer"
             :buttonProps="{ type: 'submit' }"
             :model="items"
+            v-else
           />
         </div>
       </form>
