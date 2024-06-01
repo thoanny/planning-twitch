@@ -12,6 +12,7 @@
 - [TailwindCSS](https://tailwindcss.com/) (framework)
 - [Heroicons](https://heroicons.com/) (ressource)
 - [Hero Patterns](https://heropatterns.com/) (ressource)
+- [Prime Icons](https://github.com/primefaces/primeicons) (ressource)
 
 ## Project Setup
 

@@ -35,7 +35,6 @@ const toggle = (event) => {
   op.value.toggle(event);
 };
 
-const menu = ref();
 const items = ref([
   {
     label: 'Dupliquer',
@@ -179,7 +178,7 @@ const editEvent = (uid) => {
         >
           <template #content>
             <div class="flex justify-between items-center gap-2">
-              <div class="font-bold">{{ event.title }}</div>
+              <div class="font-bold truncate">{{ event.title }}</div>
               <div class="flex gap-2 items-center">
                 <Tag
                   :value="event.day.name"

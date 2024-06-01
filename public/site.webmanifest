@@ -1,6 +1,6 @@
 {
-  "name": "Planning Twitch",
-  "short_name": "Planning",
+  "name": "Générateur de planning Twitch",
+  "short_name": "Planning Twitch",
   "icons": [
     {
       "src": "/android-chrome-36x36.png",
@@ -45,7 +45,7 @@
   ],
   "theme_color": "#93c045",
   "background_color": "#93c045",
-  "start_url": "https://planning-twitch.vercel.app",
+  "start_url": "https://planning.thoanny.fr",
   "display": "standalone",
   "orientation": "portrait"
 }

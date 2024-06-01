@@ -1,6 +1,7 @@
 <script setup>
 import { storeToRefs } from 'pinia';
 import { useSettingsStore } from '@/stores/settings.js';
+import draggable from 'vuedraggable';
 
 import Checkbox from 'primevue/checkbox';
 import Dropdown from 'primevue/dropdown';
@@ -159,25 +160,28 @@ if (!settings.value.font?.code) {
 
     <h4>Réseaux sociaux numériques</h4>
 
-    <!-- TODO : utiliser vuedraggable pour changer l'ordre -->
-
-    <div class="flex flex-col gap-2">
-      <div class="grid grid-cols-2 gap-2" v-for="i in [0, 1, 2, 3, 4]">
-        <Dropdown
-          v-model="settings.links[i].type"
-          :options="socials"
-          optionLabel="name"
-          placeholder="Type"
-          class="w-full"
-        />
-        <InputText
-          v-model="settings.links[i].value"
-          placeholder="Pseudo / URL"
-          class="w-full"
-          autocomplete="off"
-        />
-      </div>
-    </div>
+    <draggable v-model="settings.links" item-key="type" handle=".handle" class="mt-4 space-y-2">
+      <template #item="{ element: link }">
+        <div class="grid grid-cols-2 gap-2">
+          <div class="flex gap-2 items-center">
+            <div class="handle cursor-grab"><span class="pi pi-bars"></span></div>
+            <Dropdown
+              v-model="link.type"
+              :options="socials"
+              optionLabel="name"
+              placeholder="Type"
+              class="w-full"
+            />
+          </div>
+          <InputText
+            v-model="link.value"
+            placeholder="Pseudo / URL"
+            class="w-full"
+            autocomplete="off"
+          />
+        </div>
+      </template>
+    </draggable>
   </div>
 </template>
 

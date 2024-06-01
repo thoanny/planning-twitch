@@ -1,6 +1,0 @@
-└─ planning-twitch
-   ├─ src
-   │  └─ SidebarSettings.vue
-   │     └─ line 163: TODO : utiliser vuedraggable pour changer l'ordre
-   └─ index.html
-      └─ line 38: TODO : Ajouter Matomo
