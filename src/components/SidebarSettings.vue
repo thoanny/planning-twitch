@@ -5,7 +5,7 @@ import { useSettingsStore } from '@/stores/settings.js';
 import Checkbox from 'primevue/checkbox';
 import Dropdown from 'primevue/dropdown';
 import InputText from 'primevue/inputtext';
-import ToggleButton from 'primevue/togglebutton';
+import Button from 'primevue/button';
 
 import colors from '@/data/colors.json';
 import patterns from '@/data/patterns.json';
@@ -39,12 +39,11 @@ if (!settings.value.font?.code) {
       <label for="logo">Image du logo</label>
       <div class="flex items-center gap-2">
         <InputText id="logo" v-model="settings.logo" type="url" autocomplete="off" class="flex-1" />
-        <ToggleButton
-          v-model="settings.align"
-          onLabel=""
-          offLabel=""
-          onIcon="pi pi-align-right"
-          offIcon="pi pi-align-left"
+        <Button
+          :icon="settings.align ? 'pi pi-align-right' : 'pi pi-align-left'"
+          outlined
+          severity="secondary"
+          @click="settings.align = !settings.align"
         />
       </div>
     </div>
