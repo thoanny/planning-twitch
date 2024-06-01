@@ -48,7 +48,7 @@ const tourSteps = [
     header: {
       title: 'Organiser les événements',
     },
-    content: `Glisez-déposez les événements pour changer leur ordre d'affichage.`,
+    content: `Glissez-déposez les événements pour changer leur ordre d'affichage.`,
     params: {
       enableScrolling: false,
     },
@@ -58,7 +58,7 @@ const tourSteps = [
     header: {
       title: 'Gérer les événements',
     },
-    content: `Dupliquez, modifiez ou supprimez vos événements en cliquant droit sur ceux-ci (laissez appuyé sur écran tactile).`,
+    content: `Cliquez sur un événement pour le modifier, le dupliquer ou le supprimer.`,
     params: {
       enableScrolling: false,
     },
@@ -68,7 +68,7 @@ const tourSteps = [
     header: {
       title: 'Aperçu du planning',
     },
-    content: `Affichez la version paysage ou portrait de votre planning. Ce deux formats vous offrent une large gamme de diffusion sur les réseaux sociaux numériques.`,
+    content: `Affichez la version paysage ou portrait de votre planning. Ces deux formats vous offrent une large gamme de diffusion sur les réseaux sociaux numériques.`,
     params: {
       enableScrolling: false,
       placement: 'left-start',

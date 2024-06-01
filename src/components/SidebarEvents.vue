@@ -10,9 +10,9 @@ import InputText from 'primevue/inputtext';
 import Dropdown from 'primevue/dropdown';
 import Card from 'primevue/card';
 import Tag from 'primevue/tag';
-import ContextMenu from 'primevue/contextmenu';
 import OverlayPanel from 'primevue/overlaypanel';
 import InputSwitch from 'primevue/inputswitch';
+import SplitButton from 'primevue/splitbutton';
 
 import days from '@/data/days.json';
 
@@ -23,13 +23,11 @@ const currentEvent = ref({ ...eventsStore.defaultEvent });
 
 const resetEvent = () => {
   currentEvent.value = { ...eventsStore.defaultEvent };
+  formType.value = null;
   visible.value = false;
-  visibleEdit.value = false;
 };
 
 const visible = ref(false);
-const visibleEdit = ref(false);
-const selectedEventUid = ref();
 const formType = ref();
 const op = ref();
 
@@ -40,36 +38,27 @@ const toggle = (event) => {
 const menu = ref();
 const items = ref([
   {
-    label: 'Modifier',
-    icon: 'pi pi-pencil',
-    command: () => {
-      currentEvent.value = {
-        ...events.value.find((event) => event.uid === selectedEventUid.value),
-      };
-      showModal('edit');
-    },
-  },
-  {
     label: 'Dupliquer',
     icon: 'pi pi-clone',
     command: () => {
-      eventsStore.onDuplicateEvent(selectedEventUid.value);
+      const uid = currentEvent.value.uid;
+      resetEvent();
+      eventsStore.onDuplicateEvent(uid);
     },
   },
-  { separator: true },
+  {
+    separator: true,
+  },
   {
     label: 'Supprimer',
     icon: 'pi pi-trash',
     command: () => {
-      eventsStore.onDeleteEvent(selectedEventUid.value);
+      const uid = currentEvent.value.uid;
+      resetEvent();
+      eventsStore.onDeleteEvent(uid);
     },
   },
 ]);
-
-const onEventRightClick = (event, uid) => {
-  selectedEventUid.value = uid;
-  menu.value.show(event);
-};
 
 const saveEvent = () => {
   if (!currentEvent.value.title) return;
@@ -80,6 +69,13 @@ const saveEvent = () => {
 const showModal = (type) => {
   formType.value = type;
   visible.value = true;
+};
+
+const editEvent = (uid) => {
+  currentEvent.value = {
+    ...events.value.find((event) => event.uid === uid),
+  };
+  showModal('edit');
 };
 </script>
 
@@ -108,10 +104,15 @@ const showModal = (type) => {
       class="mx-4"
     >
       <form @submit.prevent="saveEvent">
-        <!-- <span class="p-text-secondary block mb-5">Update your information.</span> -->
         <div class="flex flex-col gap-2 mb-4 required">
           <label for="title" class="font-semibold">Intitulé de l'événement</label>
-          <InputText id="title" class="w-full" autocomplete="off" v-model="currentEvent.title" />
+          <InputText
+            id="title"
+            class="w-full"
+            autocomplete="off"
+            v-model="currentEvent.title"
+            :autofocus="formType === 'add'"
+          />
         </div>
         <div class="flex flex-col gap-2 mb-4">
           <label for="image" class="font-semibold">Adresse URL de l'image</label>
@@ -157,9 +158,13 @@ const showModal = (type) => {
             <InputText v-model="currentEvent.end" type="time" class="w-full" />
           </div>
         </div>
-        <div class="flex justify-end gap-2">
+        <div class="flex justify-end items-center gap-2">
           <Button type="button" label="Annuler" severity="secondary" @click="resetEvent"></Button>
-          <Button type="submit" :label="formType === 'add' ? 'Ajouter' : 'Enregistrer'"></Button>
+          <SplitButton
+            :label="formType === 'add' ? 'Ajouter' : 'Enregistrer'"
+            :buttonProps="{ type: 'submit' }"
+            :model="items"
+          />
         </div>
       </form>
     </Dialog>
@@ -169,23 +174,23 @@ const showModal = (type) => {
         <Card
           class="border shadow-none"
           :pt="{ body: { class: 'p-3 gap-2' } }"
-          @contextmenu="onEventRightClick($event, event.uid)"
+          @click="editEvent(event.uid)"
           v-show="showTemplates || (!showTemplates && event.day.code !== 'template')"
         >
           <template #content>
             <div class="flex justify-between items-center gap-2">
               <div class="font-bold">{{ event.title }}</div>
-              <Tag
-                :value="event.day.name"
-                :severity="event.day.code === 'template' ? 'secondary' : 'success'"
-              ></Tag>
+              <div class="flex gap-2 items-center">
+                <Tag
+                  :value="event.day.name"
+                  :severity="event.day.code === 'template' ? 'secondary' : 'success'"
+                ></Tag>
+              </div>
             </div>
           </template>
         </Card>
       </template>
     </draggable>
-
-    <ContextMenu ref="menu" :model="items" />
   </div>
 </template>
 
