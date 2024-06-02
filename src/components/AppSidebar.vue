@@ -66,8 +66,20 @@ fetch('https://wp.thoanny.fr/graphql', {
         link
         @click="
           activeTab = 0;
-          tours['myTour'].start();
+          tours['myTourDesktop'].start();
         "
+        class="hidden lg:flex"
+      />
+      <Button
+        icon="pi pi-question-circle"
+        label="Aide"
+        size="small"
+        link
+        @click="
+          activeTab = 0;
+          tours['myTourMobile'].start();
+        "
+        class="flex lg:hidden"
       />
       <Button icon="pi pi-heart" label="T-potes" size="small" link @click="visibleThanks = true" />
       <a href="https://github.com/thoanny/planning-twitch" target="_blank">
