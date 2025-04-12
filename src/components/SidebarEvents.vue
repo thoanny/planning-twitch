@@ -125,7 +125,8 @@ const editEvent = (uid) => {
               créer un compte, comme
               <a href="https://postimages.org/" target="_blank" class="p-text-secondary"
                 >postimages.org</a
-              >.
+              >. Alternativement, vous pouvez utiliser un service proxy CORS comme 
+              <a href="https://corsproxy.io" target="_blank" class="p-text-secondary">CorsProxy</a>.
             </div>
           </OverlayPanel>
         </div>
