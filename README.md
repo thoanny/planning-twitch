@@ -37,3 +37,8 @@ npm run build
 ```sh
 npm run lint
 ```
+
+## TODO
+
+- [ ] https://vueuse.org/core/useObjectUrl/
+- [ ] https://rxdb.info/articles/vue-indexeddb.html

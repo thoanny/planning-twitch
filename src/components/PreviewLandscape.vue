@@ -1,10 +1,10 @@
 <script setup>
 import { ref } from 'vue';
 import { storeToRefs } from 'pinia';
+import { useDebounceFn } from '@vueuse/core';
 import { useSettingsStore } from '@/stores/settings.js';
 import { useEventsStore } from '@/stores/events.js';
 import domtoimage from 'dom-to-image-more';
-import debounce from 'lodash/debounce';
 import Image from 'primevue/image';
 
 import IconLink from '@/components/IconLink.vue';
@@ -23,7 +23,7 @@ const eventsByDay = (day) => {
   return events.value.filter((event) => event.day.code === day);
 };
 
-const loadLandscapeImage = debounce(() => {
+const loadLandscapeImage = useDebounceFn(() => {
   domtoimage
     .toPng(document.querySelector('#landscape'), {
       width: 1920,

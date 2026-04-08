@@ -1,9 +1,9 @@
+@use 'fonts';
+@use 'patterns';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import 'fonts';
-@import 'patterns';
 
 html {
   font-size: 14px;
