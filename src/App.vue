@@ -1,8 +1,9 @@
 <script setup>
-import AppSidebar from '@/components/AppSidebar.vue';
 import AppPreview from '@/components/AppPreview.vue';
+import AppSidebar from '@/components/AppSidebar.vue';
 import tourDesktop from '@/data/tour.desktop.json';
 import tourMobile from '@/data/tour.mobile.json';
+import Toast from 'primevue/toast';
 </script>
 
 <template>
@@ -10,6 +11,7 @@ import tourMobile from '@/data/tour.mobile.json';
     <div class="flex flex-col-reverse lg:flex-row gap-4 h-full p-4 mx-auto container">
       <AppSidebar />
       <AppPreview />
+      <Toast position="bottom-right" :life="3000" />
     </div>
   </div>
   <v-tour

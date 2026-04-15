@@ -1,12 +1,10 @@
 <script setup>
-import { ref, inject } from 'vue';
-
-import TabView from 'primevue/tabview';
-import TabPanel from 'primevue/tabpanel';
-import Button from 'primevue/button';
-
 import SidebarEvents from '@/components/SidebarEvents.vue';
 import SidebarSettings from '@/components/SidebarSettings.vue';
+import Button from 'primevue/button';
+import TabPanel from 'primevue/tabpanel';
+import TabView from 'primevue/tabview';
+import { inject, ref } from 'vue';
 
 const tours = inject('tours');
 const activeTab = ref(0);

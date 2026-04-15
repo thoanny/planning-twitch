@@ -1,48 +1,43 @@
 <script setup>
-import { ref } from 'vue';
-import { storeToRefs } from 'pinia';
-import { useEventsStore } from '@/stores/events.js';
-import draggable from 'vuedraggable';
-
-import Button from 'primevue/button';
-import Dialog from 'primevue/dialog';
-import InputText from 'primevue/inputtext';
-import Dropdown from 'primevue/dropdown';
-import Card from 'primevue/card';
-import Tag from 'primevue/tag';
-import OverlayPanel from 'primevue/overlaypanel';
-import InputSwitch from 'primevue/inputswitch';
-import SplitButton from 'primevue/splitbutton';
-
 import days from '@/data/days.json';
+import { useEventsStore } from '@/stores/events.js';
+import { useMediasStore } from '@/stores/medias';
+import { storeToRefs } from 'pinia';
+import Button from 'primevue/button';
+import Card from 'primevue/card';
+import ContextMenu from 'primevue/contextmenu';
+import Dialog from 'primevue/dialog';
+import Dropdown from 'primevue/dropdown';
+import InputSwitch from 'primevue/inputswitch';
+import InputText from 'primevue/inputtext';
+import SplitButton from 'primevue/splitbutton';
+import Tag from 'primevue/tag';
+import { ref } from 'vue';
+import draggable from 'vuedraggable';
+import MediaManager from './MediaManager.vue';
+import MediaUploader from './MediaUploader.vue';
 
 const eventsStore = useEventsStore();
-const { data: events, showTemplates } = storeToRefs(eventsStore);
+const { onSaveEvent, onDuplicateEvent, onDeleteEvent, defaultEvent } = eventsStore;
+const { showTemplates, events } = storeToRefs(eventsStore);
 
-const currentEvent = ref({ ...eventsStore.defaultEvent });
+const currentEvent = ref({ ...defaultEvent });
 
 const resetEvent = () => {
-  currentEvent.value = { ...eventsStore.defaultEvent };
+  currentEvent.value = { ...defaultEvent };
   formType.value = null;
   visible.value = false;
 };
 
 const visible = ref(false);
 const formType = ref();
-const op = ref();
-
-const toggle = (event) => {
-  op.value.toggle(event);
-};
 
 const items = ref([
   {
     label: 'Dupliquer',
     icon: 'pi pi-clone',
     command: () => {
-      const uid = currentEvent.value.uid;
-      resetEvent();
-      eventsStore.onDuplicateEvent(uid);
+      onDuplicateEvent(currentEvent.value.id).then(() => resetEvent());
     },
   },
   {
@@ -52,17 +47,17 @@ const items = ref([
     label: 'Supprimer',
     icon: 'pi pi-trash',
     command: () => {
-      const uid = currentEvent.value.uid;
-      resetEvent();
-      eventsStore.onDeleteEvent(uid);
+      onDeleteEvent(currentEvent.value.id).then(() => resetEvent());
     },
   },
 ]);
 
-const saveEvent = () => {
+const saveEvent = async () => {
   if (!currentEvent.value.title) return;
-  eventsStore.onSaveEvent(currentEvent.value);
-  resetEvent();
+
+  onSaveEvent(currentEvent.value).then(() => {
+    resetEvent();
+  });
 };
 
 const showModal = (type) => {
@@ -70,24 +65,67 @@ const showModal = (type) => {
   visible.value = true;
 };
 
-const editEvent = (uid) => {
+const editEvent = (eventId) => {
   currentEvent.value = {
-    ...events.value.find((event) => event.uid === uid),
+    ...events.value.find((event) => event.id === eventId),
   };
+  console.log(currentEvent.value);
   showModal('edit');
+};
+
+const mediasStore = useMediasStore();
+const { medias } = storeToRefs(mediasStore);
+
+const rightClickCurrent = ref();
+const rightClickMenu = ref();
+const rightClickItems = ref([
+  {
+    label: 'Modifier',
+    icon: 'pi pi-pencil',
+    command: () => {
+      editEvent(rightClickCurrent.value);
+      rightClickCurrent.value = null;
+    },
+  },
+  {
+    label: 'Dupliquer',
+    icon: 'pi pi-clone',
+    command: () => {
+      onDuplicateEvent(rightClickCurrent.value).then(() => resetEvent());
+      rightClickCurrent.value = null;
+    },
+  },
+  {
+    label: 'Supprimer',
+    icon: 'pi pi-trash',
+    command: () => {
+      onDeleteEvent(rightClickCurrent.value).then(() => resetEvent());
+      rightClickCurrent.value = null;
+    },
+  },
+]);
+
+const onEventRightClick = (event, eventId) => {
+  console.log(eventId);
+  rightClickCurrent.value = eventId;
+  rightClickMenu.value.show(event);
 };
 </script>
 
 <template>
   <div>
     <div class="flex items-center justify-between">
-      <Button
-        label="Ajouter un événement"
-        icon="pi pi-plus"
-        size="small"
-        @click="showModal('add')"
-        data-step="1"
-      />
+      <div class="flex gap-2">
+        <Button
+          label="Ajouter"
+          icon="pi pi-plus"
+          size="small"
+          @click="showModal('add')"
+          data-step="1"
+        />
+        <MediaManager />
+      </div>
+
       <div class="flex gap-2 items-center" data-step="2">
         <span>Modèles</span>
         <InputSwitch v-model="showTemplates" />
@@ -104,7 +142,7 @@ const editEvent = (uid) => {
     >
       <form @submit.prevent="saveEvent">
         <div class="flex flex-col gap-2 mb-4 required">
-          <label for="title" class="font-semibold">Intitulé de l'événement</label>
+          <label for="title" class="font-semibold">Intitulé</label>
           <InputText
             id="title"
             class="w-full"
@@ -113,46 +151,70 @@ const editEvent = (uid) => {
             :autofocus="formType === 'add'"
           />
         </div>
+
         <div class="flex flex-col gap-2 mb-4">
-          <label for="image" class="font-semibold">Adresse URL de l'image</label>
-          <div class="flex gap-2">
-            <InputText id="image" class="flex-1" autocomplete="off" v-model="currentEvent.image" />
-            <Button type="button" icon="pi pi-image" rounded outlined @click="toggle" />
-          </div>
-          <OverlayPanel ref="op">
-            <div class="max-w-xs">
-              Vous pouvez héberger vos images sur des sites spécialisés et sans avoir besoin de
-              créer un compte, comme
-              <a href="https://postimages.org/" target="_blank" class="p-text-secondary"
-                >postimages.org</a
-              >.
-            </div>
-          </OverlayPanel>
+          <label for="image" class="font-semibold">Média</label>
+          <Dropdown
+            v-model="currentEvent.media"
+            :options="medias"
+            optionLabel="name"
+            optionValue="id"
+            placeholder="Sélectionnez un média"
+            emptyMessage="Aucun média disponible"
+            class="w-full"
+            showClear
+          >
+            <template #value="slotProps">
+              <div v-if="slotProps.value" class="flex items-center">
+                <img
+                  alt=""
+                  :src="medias.find((media) => media.id == slotProps.value)?.dataUrl"
+                  :class="`mr-2 size-12 object-cover`"
+                />
+                <div>Média sélectionné</div>
+              </div>
+              <span v-else>
+                <div class="flex items-center h-12">
+                  {{ slotProps.placeholder }}
+                </div>
+              </span>
+            </template>
+            <template #option="slotProps">
+              <div class="flex items-center" style="max-width: 25rem">
+                <img
+                  :alt="slotProps.option.name"
+                  :src="slotProps.option.dataUrl"
+                  :class="`mr-2 size-12 object-cover`"
+                />
+                <div class="truncate">{{ slotProps.option.name }}</div>
+              </div>
+            </template>
+          </Dropdown>
+        </div>
+        <div class="mb-4">
+          <MediaUploader />
         </div>
         <div class="grid grid-cols-3 gap-4 mb-4">
           <div class="flex flex-col gap-3 w-full">
-            <label for="email" class="font-semibold"
-              >Jour <span class="hidden md:inline">de l'événement</span></label
-            >
+            <label for="email" class="font-semibold">Jour</label>
             <Dropdown
               v-model="currentEvent.day"
               :options="days"
               optionLabel="name"
+              optionValue="code"
               placeholder="Modèle"
               class="w-full"
             />
           </div>
           <div class="flex flex-col gap-3 w-full">
             <label for="email" class="font-semibold">
-              <span class="inline md:hidden">Début</span>
-              <span class="hidden md:inline">Heure de début</span>
+              <span>Début</span>
             </label>
             <InputText v-model="currentEvent.start" type="time" class="w-full" />
           </div>
           <div class="flex flex-col gap-3 w-full">
             <label for="email" class="font-semibold">
-              <span class="inline md:hidden">Fin</span>
-              <span class="hidden md:inline">Heure de fin</span>
+              <span>Fin</span>
             </label>
             <InputText v-model="currentEvent.end" type="time" class="w-full" />
           </div>
@@ -170,21 +232,33 @@ const editEvent = (uid) => {
       </form>
     </Dialog>
 
-    <draggable v-model="events" item-key="uid" class="mt-4 space-y-2" data-step="3">
+    <draggable v-model="events" item-key="id" class="mt-4 space-y-2" data-step="3">
       <template #item="{ element: event }">
         <Card
           class="border shadow-none cursor-pointer"
           :pt="{ body: { class: 'p-3 gap-2' } }"
-          @click="editEvent(event.uid)"
-          v-show="showTemplates || (!showTemplates && event.day.code !== 'template')"
+          @click="editEvent(event.id)"
+          v-show="showTemplates || (!showTemplates && event.day !== 'template')"
+          @contextmenu="onEventRightClick($event, event.id)"
         >
           <template #content>
             <div class="flex justify-between items-center gap-2">
-              <div class="font-bold truncate">{{ event.title }}</div>
+              <div class="flex grow gap-2 items-center" style="max-width: calc(100% - 5rem)">
+                <img
+                  :src="event.mediaUrl"
+                  alt=""
+                  class="size-10 object-cover -my-4 -ml-2 rounded-xl shrink-0"
+                  v-if="event.mediaUrl"
+                />
+                <div class="font-bold truncate w-full">
+                  {{ event.title }}
+                </div>
+              </div>
+
               <div class="flex gap-2 items-center">
                 <Tag
-                  :value="event.day.name"
-                  :severity="event.day.code === 'template' ? 'secondary' : 'success'"
+                  :value="days.find((d) => d.code === event.day)?.name"
+                  :severity="event.day === 'template' ? 'secondary' : 'success'"
                 ></Tag>
               </div>
             </div>
@@ -192,6 +266,7 @@ const editEvent = (uid) => {
         </Card>
       </template>
     </draggable>
+    <ContextMenu ref="rightClickMenu" :model="rightClickItems" />
   </div>
 </template>
 

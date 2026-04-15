@@ -1,14 +1,13 @@
 <script setup>
-import { ref } from 'vue';
-import { storeToRefs } from 'pinia';
-import { useDebounceFn } from '@vueuse/core';
-import { useSettingsStore } from '@/stores/settings.js';
-import { useEventsStore } from '@/stores/events.js';
-import domtoimage from 'dom-to-image-more';
-import Image from 'primevue/image';
-
 import IconLink from '@/components/IconLink.vue';
 import days from '@/data/days.json';
+import { useEventsStore } from '@/stores/events';
+import { useSettingsStore } from '@/stores/settings.js';
+import { useDebounceFn } from '@vueuse/core';
+import domtoimage from 'dom-to-image-more';
+import { storeToRefs } from 'pinia';
+import Image from 'primevue/image';
+import { ref, watch } from 'vue';
 
 const landscape = ref();
 const imageLandscape = ref();
@@ -17,13 +16,14 @@ const settingsStore = useSettingsStore();
 const { data: settings } = storeToRefs(settingsStore);
 
 const eventsStore = useEventsStore();
-const { data: events } = storeToRefs(eventsStore);
+const { events } = storeToRefs(eventsStore);
 
 const eventsByDay = (day) => {
-  return events.value.filter((event) => event.day.code === day);
+  return events.value?.filter((event) => event.day === day) || [];
 };
 
 const loadLandscapeImage = useDebounceFn(() => {
+  console.log('loadLandscapeImage');
   domtoimage
     .toPng(document.querySelector('#landscape'), {
       width: 1920,
@@ -38,14 +38,6 @@ const loadLandscapeImage = useDebounceFn(() => {
     });
 }, 500);
 
-eventsStore.$subscribe(() => {
-  loadLandscapeImage();
-});
-
-settingsStore.$subscribe(() => {
-  loadLandscapeImage();
-});
-
 const handleDownloadImage = () => {
   var link = document.createElement('a');
   link.download = 'planning-paysage.png';
@@ -54,6 +46,15 @@ const handleDownloadImage = () => {
 };
 
 loadLandscapeImage();
+
+watch(events, async () => {
+  console.log('watcher');
+  loadLandscapeImage();
+});
+
+settingsStore.$subscribe(() => {
+  loadLandscapeImage();
+});
 </script>
 
 <template>
@@ -149,9 +150,9 @@ loadLandscapeImage();
               </div>
 
               <img
-                :src="event.image"
+                :src="event.mediaUrl"
                 :alt="event.title"
-                v-if="event.image"
+                v-if="event.media"
                 @error="handleEventImageError"
                 class="w-full h-full object-cover absolute top-0 left-0 z-10"
               />

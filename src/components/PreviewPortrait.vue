@@ -1,14 +1,14 @@
 <script setup>
-import { ref } from 'vue';
-import { storeToRefs } from 'pinia';
-import { useDebounceFn } from '@vueuse/core';
-import { useSettingsStore } from '@/stores/settings.js';
-import { useEventsStore } from '@/stores/events.js';
-import domtoimage from 'dom-to-image-more';
-import Image from 'primevue/image';
-
 import IconLink from '@/components/IconLink.vue';
 import days from '@/data/days.json';
+import { useSettingsStore } from '@/stores/settings.js';
+import { useDebounceFn } from '@vueuse/core';
+import domtoimage from 'dom-to-image-more';
+import { storeToRefs } from 'pinia';
+import Image from 'primevue/image';
+import { computed, onBeforeUnmount, ref, watch } from 'vue';
+
+import { useEventsStore } from '@/stores/events';
 
 const portrait = ref();
 const imagePortrait = ref();
@@ -17,13 +17,14 @@ const settingsStore = useSettingsStore();
 const { data: settings } = storeToRefs(settingsStore);
 
 const eventsStore = useEventsStore();
-const { data: events } = storeToRefs(eventsStore);
+const { events } = storeToRefs(eventsStore);
 
 const eventsByDay = (day) => {
-  return events.value.filter((event) => event.day.code === day);
+  return events.value?.filter((event) => event.day === day) || [];
 };
 
 const loadPortraitImage = useDebounceFn(() => {
+  console.log('loadPortraitImage');
   domtoimage
     .toPng(document.querySelector('#portrait'), {
       width: 1080,
@@ -38,14 +39,6 @@ const loadPortraitImage = useDebounceFn(() => {
     });
 }, 500);
 
-eventsStore.$subscribe(() => {
-  loadPortraitImage();
-});
-
-settingsStore.$subscribe(() => {
-  loadPortraitImage();
-});
-
 const handleDownloadImage = () => {
   var link = document.createElement('a');
   link.download = 'planning-portrait.png';
@@ -54,6 +47,30 @@ const handleDownloadImage = () => {
 };
 
 loadPortraitImage();
+
+watch(events, async () => {
+  console.log('watcher');
+  loadPortraitImage();
+});
+
+settingsStore.$subscribe(() => {
+  loadPortraitImage();
+});
+
+const allEvents = computed(() => {
+  return events.value?.map((e) => ({
+    ...e,
+    mediaUrl: e.media ? URL.createObjectURL(e.media) : null,
+  }));
+});
+
+onBeforeUnmount(() => {
+  allEvents.value.forEach((e) => {
+    if (e.mediaUrl) {
+      URL.revokeObjectURL(e.mediaUrl);
+    }
+  });
+});
 </script>
 
 <template>
@@ -146,9 +163,9 @@ loadPortraitImage();
               </div>
 
               <img
-                :src="event.image"
+                :src="event.mediaUrl"
                 :alt="event.title"
-                v-if="event.image"
+                v-if="event.media"
                 @error="handleEventImageError"
                 class="w-full h-full object-cover absolute top-0 left-0 z-10"
               />
