@@ -24,7 +24,7 @@ const activeTab = ref(0);
         <SidebarSettings />
       </TabPanel>
     </TabView>
-    <div class="flex justify-center gap-1 mt-4">
+    <div class="flex justify-center gap-1 mt-4 items-center">
       <Button
         icon="pi pi-question-circle"
         label="Aide"
@@ -50,6 +50,7 @@ const activeTab = ref(0);
       <a href="https://github.com/thoanny/planning-twitch" target="_blank">
         <Button icon="pi pi-code" label="Source" size="small" link />
       </a>
+      <span class="text-sm opacity-50">v2.0</span>
     </div>
   </div>
 </template>

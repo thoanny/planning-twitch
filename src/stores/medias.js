@@ -1,12 +1,15 @@
 import { db } from '@/db';
 import { useObservable } from '@vueuse/rxjs';
 import { liveQuery } from 'dexie';
-import { defineStore } from 'pinia';
+import { defineStore, storeToRefs } from 'pinia';
 import { useToast } from 'primevue/usetoast';
 import { computed, onBeforeUnmount } from 'vue';
+import { useSettingsStore } from './settings';
 
 export const useMediasStore = defineStore('medias', () => {
   const toast = useToast();
+  const settingsStore = useSettingsStore();
+  const { data: settings } = storeToRefs(settingsStore);
   const liveMedias = useObservable(liveQuery(() => db.medias.toArray()));
 
   const medias = computed(() => {
@@ -26,6 +29,17 @@ export const useMediasStore = defineStore('medias', () => {
           events.forEach((event) => {
             db.events.update(event.id, { media: '' });
           });
+        })
+        .then(() => {
+          if (settings.value.logoImage == mediaId) {
+            settings.value.logoImage = null;
+          }
+          if (settings.value.landscapeBackgroundImage == mediaId) {
+            settings.value.landscapeBackgroundImage = null;
+          }
+          if (settings.value.portraitBackgroundImage == mediaId) {
+            settings.value.portraitBackgroundImage = null;
+          }
         })
         .then(async () => {
           await db.medias

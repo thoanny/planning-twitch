@@ -116,3 +116,7 @@ body {
     }
   }
 }
+
+.p-accordion-tab-active .p-accordion-header .p-accordion-header-text {
+  color: var(--primary-color) !important;
+}

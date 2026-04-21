@@ -3,7 +3,7 @@
     mode="basic"
     accept="image/*"
     :multiple="true"
-    :maxFileSize="1000000"
+    :maxFileSize="maxFileSize"
     :showUploadButton="false"
     :showCancelButton="false"
     chooseLabel="Ajouter des médias"
@@ -23,6 +23,7 @@ import FileUpload from 'primevue/fileupload';
 import { useToast } from 'primevue/usetoast';
 
 const toast = useToast();
+const maxFileSize = 4 * 1024 * 1024;
 
 const customBase64Uploader = async (event) => {
   event.files.forEach(async (file) => {

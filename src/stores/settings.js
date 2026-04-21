@@ -5,40 +5,45 @@ export const useSettingsStore = defineStore(
   'settings',
   () => {
     const data = ref({
-      logo: '',
-      align: false,
-      rounded: true,
-      color: {},
-      pattern: {},
-      font: {},
+      name: 'Paramètres par défaut',
       title: 'Mon planning Twitch',
-      hideEmpty: {
-        landscape: false,
-        portrait: false,
-      },
-      background: {
-        landscape: '',
-        portrait: '',
-      },
+
+      backgroundColor: '#9810fa',
+      backgroundPattern: 'topography',
+      borderRadius: 16,
+      fontFamily: 'noto-sans',
+      fontColor: '#faf5ff',
+      headingFontSizeLandscape: 72,
+      headingFontSizePortrait: 64,
+      eventBackgroundPrimaryColor: '#5d0ec0',
+      eventBackgroundSecondaryColor: '#8200db',
+      eventFontColor: '#faf5ff',
+      eventFontSizeLandscape: 20,
+      eventFontSizePortrait: 24,
+      logoAlignment: 'left',
+      linkBackgroundColor: '#faf5ff',
+      linkIconColor: '#5d0ec0',
+      linkFontColor: '#5d0ec0',
+
       links: [
         {
-          type: '',
+          type: null,
           value: '',
         },
         {
-          type: '',
+          type: null,
           value: '',
         },
         {
-          type: '',
+          type: null,
           value: '',
         },
         {
-          type: '',
+          type: null,
           value: '',
         },
         {
-          type: '',
+          type: null,
           value: '',
         },
       ],
@@ -48,7 +53,7 @@ export const useSettingsStore = defineStore(
   },
   {
     persist: {
-      key: 'settings-v2',
+      key: 'settings-v3',
     },
   },
 );
