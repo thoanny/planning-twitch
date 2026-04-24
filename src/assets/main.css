@@ -4,6 +4,40 @@
 @import 'tailwindcss';
 @import 'tailwindcss-primeui';
 
+@theme {
+  --font-montserrat: 'Montserrat', sans-serif;
+  --font-noto-sans: 'Noto Sans', sans-serif;
+  --font-nunito: 'Nunito', sans-serif;
+  --font-oswald: 'Oswald', sans-serif;
+  --font-quicksand: 'Quicksand', sans-serif;
+  --font-arial: Arial, sans-serif;
+  --font-courier-new: 'Courier New', serif;
+  --font-georgia: 'Georgia', serif;
+  --font-impact: 'Impact', sans-serif;
+  --font-times-new-roman: 'Times New Roman', serif;
+  --font-trebuchet-ms: 'Trebuchet MS', sans-serif;
+  --font-verdana: 'Verdana', sans-serif;
+  --font-josefin-sans: 'Josefin Sans', sans-serif;
+  --font-jost: 'Jost', sans-serif;
+  --font-lexend: 'Lexend', sans-serif;
+  --font-libre-franklin: 'Libre Franklin', sans-serif;
+  --font-lora: 'Lora', serif;
+  --font-noto-serif: 'Noto Serif', serif;
+  --font-open-sans: 'Open Sans', sans-serif;
+  --font-outfit: 'Outfit', sans-serif;
+  --font-roboto-flex: 'Roboto Flex', sans-serif;
+  --font-rubik: 'Rubik', sans-serif;
+  --font-urbanist: 'Urbanist', sans-serif;
+  --font-vollkorn: 'Vollkorn', serif;
+  --font-work-sans: 'Work Sans', sans-serif;
+}
+
+@source inline('font-{montserrat,noto-sans,nunito,oswald,quicksand,arial}');
+@source inline('font-{courier-new,georgia,impact,times-new-roman,trebuchet-ms}');
+@source inline('font-{verdana,josefin-sans,jost,lexend,libre-franklin,lora}');
+@source inline('font-{noto-serif,open-sans,outfit,roboto-flex,rubik,urbanist}');
+@source inline('font-{vollkorn,work-sans}');
+
 html {
   font-size: 14px;
 }
