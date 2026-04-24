@@ -1,22 +1,23 @@
 <script setup>
+import MediaDropdown from '@/components/MediaDropdown.vue';
+import MediaManager from '@/components/MediaManager.vue';
+import MediaUploader from '@/components/MediaUploader.vue';
 import days from '@/data/days.json';
 import { useEventsStore } from '@/stores/events.js';
 import { useMediasStore } from '@/stores/medias';
 import { storeToRefs } from 'pinia';
-import Button from 'primevue/button';
-import Card from 'primevue/card';
-import ContextMenu from 'primevue/contextmenu';
-import Dialog from 'primevue/dialog';
-import Dropdown from 'primevue/dropdown';
-import InputSwitch from 'primevue/inputswitch';
-import InputText from 'primevue/inputtext';
-import SplitButton from 'primevue/splitbutton';
-import Tag from 'primevue/tag';
+import {
+  Button,
+  ContextMenu,
+  Dialog,
+  InputText,
+  Select,
+  SplitButton,
+  Tag,
+  ToggleSwitch,
+} from 'primevue';
 import { ref } from 'vue';
 import draggable from 'vuedraggable';
-import MediaDropdown from './MediaDropdown.vue';
-import MediaManager from './MediaManager.vue';
-import MediaUploader from './MediaUploader.vue';
 
 const eventsStore = useEventsStore();
 const { onSaveEvent, onDuplicateEvent, onDeleteEvent, defaultEvent } = eventsStore;
@@ -117,19 +118,13 @@ const onEventRightClick = (event, eventId) => {
   <div>
     <div class="flex items-center justify-between">
       <div class="flex gap-2">
-        <Button
-          label="Ajouter"
-          icon="pi pi-plus"
-          size="small"
-          @click="showModal('add')"
-          data-step="1"
-        />
+        <Button label="Ajouter" icon="pi pi-plus" @click="showModal('add')" data-step="1" />
         <MediaManager />
       </div>
 
       <div class="flex gap-2 items-center" data-step="2">
         <span>Modèles</span>
-        <InputSwitch v-model="showTemplates" />
+        <ToggleSwitch v-model="showTemplates" />
       </div>
     </div>
 
@@ -163,7 +158,7 @@ const onEventRightClick = (event, eventId) => {
         <div class="grid grid-cols-3 gap-4 mb-4">
           <div class="flex flex-col gap-3 w-full">
             <label for="email" class="font-semibold">Jour</label>
-            <Dropdown
+            <Select
               v-model="currentEvent.day"
               :options="days"
               optionLabel="name"
@@ -198,38 +193,40 @@ const onEventRightClick = (event, eventId) => {
       </form>
     </Dialog>
 
-    <draggable v-model="events" item-key="id" class="mt-4 space-y-2" data-step="3">
+    <draggable
+      v-model="events"
+      item-key="id"
+      class="mt-4 border border-surface-200 rounded-lg"
+      data-step="3"
+    >
       <template #item="{ element: event }">
-        <Card
-          class="border shadow-none cursor-pointer"
-          :pt="{ body: { class: 'p-3 gap-2' } }"
+        <div
+          class="cursor-pointer border-t first:border-t-0 border-surface-200 hover:bg-surface-100 py-2 px-2"
           @click="editEvent(event.id)"
           v-show="showTemplates || (!showTemplates && event.day !== 'template')"
           @contextmenu="onEventRightClick($event, event.id)"
         >
-          <template #content>
-            <div class="flex justify-between items-center gap-2">
-              <div class="flex grow gap-2 items-center" style="max-width: calc(100% - 5rem)">
-                <img
-                  :src="event.mediaUrl"
-                  alt=""
-                  class="size-10 object-cover -my-4 -ml-2 rounded-xl shrink-0"
-                  v-if="event.mediaUrl"
-                />
-                <div class="font-bold truncate w-full">
-                  {{ event.title }}
-                </div>
-              </div>
-
-              <div class="flex gap-2 items-center">
-                <Tag
-                  :value="days.find((d) => d.code === event.day)?.name"
-                  :severity="event.day === 'template' ? 'secondary' : 'success'"
-                ></Tag>
+          <div class="flex justify-between items-center gap-2">
+            <div class="flex grow gap-2 items-center" style="max-width: calc(100% - 5rem)">
+              <img
+                :src="event.mediaUrl"
+                alt=""
+                class="size-10 object-cover rounded-lg shrink-0"
+                v-if="event.mediaUrl"
+              />
+              <div class="font-bold truncate w-full">
+                {{ event.title }}
               </div>
             </div>
-          </template>
-        </Card>
+
+            <div class="flex gap-2 items-center">
+              <Tag
+                :value="days.find((d) => d.code === event.day)?.name"
+                :severity="event.day === 'template' ? 'contrast' : 'success'"
+              ></Tag>
+            </div>
+          </div>
+        </div>
       </template>
     </draggable>
     <ContextMenu ref="rightClickMenu" :model="rightClickItems" />

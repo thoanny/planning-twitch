@@ -1,28 +1,28 @@
 <template>
   <div class="card flex justify-content-center">
-    <Button label="Médias" @click="visible = true" size="small" icon="pi pi-images" />
+    <Button @click="visible = true" icon="pi pi-images" label="Médias" />
     <Dialog
       v-model:visible="visible"
       modal
       header="Gestion des médias"
-      :style="{ maxWidth: '90dvw', width: '100%' }"
+      :style="{ maxWidth: '72rem', width: '100%' }"
     >
       <template #footer>
         <MediaUploader />
       </template>
-      <div class="flex flex-col gap-2" v-if="medias.length > 0">
-        <Card
-          class="border shadow-none w-full"
-          :pt="{ body: { class: 'p-2 gap-2' } }"
-          v-for="media in medias"
-          :key="media.id"
-        >
-          <template #content>
-            <div class="flex gap-4 justify-between items-center">
+
+      <DataView :value="medias" paginator :rows="10">
+        <template #list="slotProps">
+          <div class="flex flex-col">
+            <div
+              class="flex gap-4 justify-between items-center border-t first:border-t-0 border-surface-200 py-2"
+              v-for="(media, index) in slotProps.items"
+              :key="index"
+            >
               <div class="flex grow w-full gap-2 items-center">
                 <Image
                   :src="media.dataUrl"
-                  imageClass="size-12 aspect-square w-full object-cover shrink-0"
+                  imageClass="size-12 aspect-square w-full object-cover shrink-0 rounded"
                   preview
                 />
                 <div class="truncate hidden sm:block w-full" style="max-width: calc(100% - 4rem)">
@@ -39,14 +39,9 @@
                 />
               </div>
             </div>
-          </template>
-        </Card>
-      </div>
-      <div v-else>
-        <span class="opacity-50"
-          >Aucun média disponible. Ajoutez des médias pour les utiliser ultérieurement.</span
-        >
-      </div>
+          </div>
+        </template>
+      </DataView>
     </Dialog>
   </div>
 </template>
@@ -54,10 +49,7 @@
 <script setup>
 import { useMediasStore } from '@/stores/medias';
 import { storeToRefs } from 'pinia';
-import Button from 'primevue/button';
-import Card from 'primevue/card';
-import Dialog from 'primevue/dialog';
-import Image from 'primevue/image';
+import { Button, DataView, Dialog, Image } from 'primevue';
 import { ref } from 'vue';
 import MediaUploader from './MediaUploader.vue';
 

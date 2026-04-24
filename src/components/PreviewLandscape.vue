@@ -8,7 +8,7 @@ import { useSettingsStore } from '@/stores/settings.js';
 import { useDebounceFn } from '@vueuse/core';
 import domtoimage from 'dom-to-image-more';
 import { storeToRefs } from 'pinia';
-import Image from 'primevue/image';
+import { Image } from 'primevue';
 import { ref, watch } from 'vue';
 
 const landscape = ref();
@@ -136,7 +136,7 @@ const getMediaUrl = (mediaId) => {
             <div
               v-for="event in eventsByDay(day.code)"
               :key="event.id"
-              class="flex flex-col justify-between grow border-3 items-center justify-center relative overflow-hidden"
+              class="flex flex-col justify-between grow border-3 items-center relative overflow-hidden"
               :style="{
                 backgroundColor: settings.eventBackgroundSecondaryColor,
                 borderColor: settings.eventBackgroundPrimaryColor,

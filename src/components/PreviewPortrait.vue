@@ -7,7 +7,7 @@ import { useSettingsStore } from '@/stores/settings.js';
 import { useDebounceFn } from '@vueuse/core';
 import domtoimage from 'dom-to-image-more';
 import { storeToRefs } from 'pinia';
-import Image from 'primevue/image';
+import { Image } from 'primevue';
 import { ref, watch } from 'vue';
 
 const portrait = ref();
@@ -108,7 +108,7 @@ const getMediaUrl = (mediaId) => {
         :class="{ 'flex-row-reverse': settings.logoAlignment == 'left' }"
       >
         <div
-          class="flex-1 font-semibold uppercase leading-tight"
+          class="flex-1 font-bold uppercase leading-tight"
           v-text="settings.title"
           :class="{
             'text-left': settings.logoImage && settings.logoAlignment == 'right',

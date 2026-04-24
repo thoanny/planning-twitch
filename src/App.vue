@@ -8,7 +8,7 @@ import Toast from 'primevue/toast';
 
 <template>
   <div class="container mx-auto h-full">
-    <div class="flex flex-col-reverse lg:flex-row gap-4 h-full p-4 mx-auto container">
+    <div class="flex flex-col-reverse lg:flex-row gap-4 h-full p-4">
       <AppSidebar />
       <AppPreview />
       <Toast position="bottom-right" :life="3000" />

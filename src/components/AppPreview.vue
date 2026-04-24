@@ -1,13 +1,12 @@
 <script setup>
 import PreviewLandscape from '@/components/PreviewLandscape.vue';
 import PreviewPortrait from '@/components/PreviewPortrait.vue';
-import TabPanel from 'primevue/tabpanel';
-import TabView from 'primevue/tabview';
+import { Tab, TabList, TabPanel, TabPanels, Tabs } from 'primevue';
 </script>
 
 <template>
   <div class="flex-1">
-    <h1 class="mt-0 text-primary flex gap-2 items-center">
+    <h1 class="mt-0 text-primary flex gap-2 items-center text-[2rem] font-bold mb-4">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
@@ -24,19 +23,29 @@ import TabView from 'primevue/tabview';
         />
       </svg>
 
-      Générateur de planning Twitch
+      Générateur de planning
     </h1>
-    <TabView class="shadow rounded-xl overflow-hidden" data-step="4">
-      <TabPanel header="Paysage (1920 × 1080 px)">
-        <div class="w-full h-full bg-pattern-transparent rounded-lg border p-4">
-          <PreviewLandscape />
-        </div>
-      </TabPanel>
-      <TabPanel header="Portrait (1080 × 1920 px)">
-        <div class="w-full h-full bg-pattern-transparent rounded-lg border p-4">
-          <PreviewPortrait />
-        </div>
-      </TabPanel>
-    </TabView>
+    <Tabs value="landscape" class="shadow rounded-xl overflow-hidden" data-step="4">
+      <TabList>
+        <Tab value="landscape">Paysage (1920 × 1080 px)</Tab>
+        <Tab value="portrait">Portrait (1080 × 1920 px)</Tab>
+      </TabList>
+      <TabPanels>
+        <TabPanel value="landscape">
+          <div
+            class="w-full h-full bg-pattern-transparent rounded-lg border border-surface-300 p-4"
+          >
+            <PreviewLandscape />
+          </div>
+        </TabPanel>
+        <TabPanel value="portrait">
+          <div
+            class="w-full h-full bg-pattern-transparent rounded-lg border border-surface-300 p-4 flex justify-center"
+          >
+            <PreviewPortrait />
+          </div>
+        </TabPanel>
+      </TabPanels>
+    </Tabs>
   </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <Dropdown
+  <Select
     :options="medias"
     optionLabel="name"
     optionValue="id"
@@ -33,13 +33,13 @@
         <div class="truncate">{{ slotProps.option.name }}</div>
       </div>
     </template>
-  </Dropdown>
+  </Select>
 </template>
 
 <script setup>
 import { useMediasStore } from '@/stores/medias';
 import { storeToRefs } from 'pinia';
-import Dropdown from 'primevue/dropdown';
+import { Select } from 'primevue';
 
 const mediasStore = useMediasStore();
 const { medias } = storeToRefs(mediasStore);

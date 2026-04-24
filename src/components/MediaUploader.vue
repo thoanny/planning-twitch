@@ -19,8 +19,7 @@
 
 <script setup>
 import { db } from '@/db';
-import FileUpload from 'primevue/fileupload';
-import { useToast } from 'primevue/usetoast';
+import { FileUpload, useToast } from 'primevue';
 
 const toast = useToast();
 const maxFileSize = 4 * 1024 * 1024;
