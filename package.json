@@ -1,6 +1,6 @@
 {
   "name": "planning-twitch.thoanny.fr",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "private": true,
   "type": "module",
   "scripts": {
@@ -11,6 +11,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@globalhive/vuejs-tour": "^3.0.1",
     "@melloware/coloris": "^0.25.0",
     "@primeuix/themes": "^2.0.3",
     "@tailwindcss/vite": "^4.2.4",
@@ -26,7 +27,6 @@
     "tailwindcss": "^4.2.4",
     "tailwindcss-primeui": "^0.6.1",
     "vue": "^3.5.33",
-    "vue3-tour": "^1.0.1",
     "vuedraggable": "^4.1.0"
   },
   "devDependencies": {

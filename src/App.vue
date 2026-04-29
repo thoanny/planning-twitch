@@ -1,8 +1,7 @@
 <script setup>
 import AppPreview from '@/components/AppPreview.vue';
 import AppSidebar from '@/components/AppSidebar.vue';
-import tourDesktop from '@/data/tour.desktop.json';
-import tourMobile from '@/data/tour.mobile.json';
+
 import Toast from 'primevue/toast';
 </script>
 
@@ -14,30 +13,4 @@ import Toast from 'primevue/toast';
       <Toast position="bottom-right" :life="3000" />
     </div>
   </div>
-  <v-tour
-    name="myTourDesktop"
-    :steps="tourDesktop"
-    :options="{
-      highlight: true,
-      labels: {
-        buttonSkip: 'Passer',
-        buttonPrevious: 'Précédent',
-        buttonNext: 'Suivant',
-        buttonStop: 'Terminer',
-      },
-    }"
-  ></v-tour>
-  <v-tour
-    name="myTourMobile"
-    :steps="tourMobile"
-    :options="{
-      highlight: true,
-      labels: {
-        buttonSkip: 'Passer',
-        buttonPrevious: 'Précédent',
-        buttonNext: 'Suivant',
-        buttonStop: 'Terminer',
-      },
-    }"
-  ></v-tour>
 </template>

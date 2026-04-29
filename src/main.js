@@ -1,6 +1,6 @@
 import '@/assets/main.css';
+import '@globalhive/vuejs-tour/dist/style.css';
 import 'primeicons/primeicons.css';
-import 'vue3-tour/dist/vue3-tour.css';
 
 import { createPinia } from 'pinia';
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
@@ -8,8 +8,6 @@ import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 import Aura from '@primeuix/themes/aura';
 import PrimeVue from 'primevue/config';
 import ToastService from 'primevue/toastservice';
-
-import Vue3Tour from 'vue3-tour';
 
 import { createColoris } from './plugins/colorisPlugin';
 
@@ -74,7 +72,6 @@ app.use(PrimeVue, {
   theme: { preset: AuraPreset },
 });
 app.use(ToastService);
-app.use(Vue3Tour).provide('tours', app.config.globalProperties.$tours);
 app.use(coloris);
 
 app.mount('#app');

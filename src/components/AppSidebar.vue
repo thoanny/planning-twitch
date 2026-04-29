@@ -1,4 +1,5 @@
 <script setup>
+import AppTour from '@/components/AppTour.vue';
 import SidebarEvents from '@/components/SidebarEvents.vue';
 import SidebarSettings from '@/components/SidebarSettings.vue';
 import { Button, Tab, TabList, TabPanel, TabPanels, Tabs } from 'primevue';
@@ -27,28 +28,7 @@ const activeTab = ref('events');
     </Tabs>
 
     <div class="flex justify-center gap-1 mt-4 items-center">
-      <Button
-        icon="pi pi-question-circle"
-        label="Aide"
-        size="small"
-        link
-        @click="
-          activeTab = 0;
-          tours['myTourDesktop'].start();
-        "
-        class="hidden! lg:flex!"
-      />
-      <Button
-        icon="pi pi-question-circle"
-        label="Aide"
-        size="small"
-        link
-        @click="
-          activeTab = 0;
-          tours['myTourMobile'].start();
-        "
-        class="flex! lg:hidden!"
-      />
+      <AppTour />
       <a href="https://github.com/thoanny/planning-twitch" target="_blank">
         <Button icon="pi pi-code" label="Source" size="small" link />
       </a>
