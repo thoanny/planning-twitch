@@ -43,8 +43,9 @@ const loadPortraitImage = useDebounceFn(() => {
 }, 500);
 
 const handleDownloadImage = () => {
-  var link = document.createElement('a');
-  link.download = 'planning-portrait.png';
+  const key = (Math.random() + 1).toString(36).substring(5);
+  const link = document.createElement('a');
+  link.download = `planning-portrait-${key}.png`;
   link.href = imagePortrait.value;
   link.click();
 };

@@ -44,8 +44,9 @@ const loadLandscapeImage = useDebounceFn(() => {
 }, 500);
 
 const handleDownloadImage = () => {
-  var link = document.createElement('a');
-  link.download = 'planning-paysage.png';
+  const key = (Math.random() + 1).toString(36).substring(5);
+  const link = document.createElement('a');
+  link.download = `planning-paysage-${key}.png`;
   link.href = imageLandscape.value;
   link.click();
 };
