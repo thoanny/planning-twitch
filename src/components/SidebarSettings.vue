@@ -149,8 +149,8 @@ const { data: settings } = storeToRefs(settingsStore);
                 { id: 'right', name: 'Aligner à droite' },
               ]"
               id="settings.logoAlignment"
-              :pt="{ root: { class: 'w-full' } }"
               :allowEmpty="false"
+              :fluid="true"
             />
           </div>
         </AccordionContent>
@@ -191,6 +191,20 @@ const { data: settings } = storeToRefs(settingsStore);
       <AccordionPanel value="4">
         <AccordionHeader>Événements</AccordionHeader>
         <AccordionContent>
+          <div class="flex flex-col w-full gap-2 mb-4">
+            <label for="settings.fontFamily">Style des événements</label>
+            <SelectButton
+              v-model="settings.eventStyle"
+              :options="[
+                { id: 's1', name: 'Style 1' },
+                { id: 's2', name: 'Style 2' },
+              ]"
+              optionLabel="name"
+              optionValue="id"
+              :allowEmpty="false"
+              :fluid="true"
+            />
+          </div>
           <div class="flex flex-col gap-2 mb-4">
             <label for="settings.eventBackgroundPrimaryColor">Couleur principale</label>
             <VueColoris

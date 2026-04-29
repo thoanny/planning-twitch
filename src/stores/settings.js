@@ -20,6 +20,7 @@ export const useSettingsStore = defineStore(
       eventFontColor: '#faf5ff',
       eventFontSizeLandscape: 20,
       eventFontSizePortrait: 24,
+      eventStyle: 's1',
       logoAlignment: 'left',
       linkBackgroundColor: '#faf5ff',
       linkIconColor: '#5d0ec0',

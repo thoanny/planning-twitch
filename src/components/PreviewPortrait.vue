@@ -136,7 +136,11 @@ const getMediaUrl = (mediaId) => {
           :key="day.code"
         >
           <div
-            class="text-4xl uppercase text-center mb-4 font-bold"
+            class="text-4xl uppercase mb-4 font-bold"
+            :class="{
+              'text-center': settings.eventStyle == 's1',
+              'text-start px-12': settings.eventStyle == 's2',
+            }"
             v-if="eventsByDay(day.code).length > 0"
           >
             {{ day.name }}
@@ -145,7 +149,10 @@ const getMediaUrl = (mediaId) => {
             <div
               v-for="event in eventsByDay(day.code)"
               :key="event.id"
-              class="flex flex-col w-full border-3 text-white items-center justify-end relative overflow-hidden"
+              class="flex flex-col w-full border-3 justify-end relative overflow-hidden"
+              :class="{
+                'items-center': settings.eventStyle == 's1',
+              }"
               :style="{
                 backgroundColor: settings.eventBackgroundSecondaryColor,
                 borderColor: settings.eventBackgroundPrimaryColor,
@@ -153,21 +160,26 @@ const getMediaUrl = (mediaId) => {
               }"
             >
               <div
-                class="relative z-20 py-2 px-4 text-center font-semibold tracking-wide border-2 !border-b-0"
+                class="relative z-20 font-semibold tracking-wide flex flex-col"
+                :class="{
+                  'px-4 text-center py-2 border-2 !border-b-0': settings.eventStyle == 's1',
+                  'pt-4 pb-3 px-5': settings.eventStyle == 's2',
+                }"
                 :style="{
                   color: settings.eventFontColor,
                   fontSize: `${settings.eventFontSizePortrait}px`,
                   backgroundColor: settings.eventBackgroundPrimaryColor,
                   borderColor: settings.eventBackgroundPrimaryColor,
-                  borderTopLeftRadius: `${settings.borderRadius / 2}px`,
-                  borderTopRightRadius: `${settings.borderRadius / 2}px`,
+                  borderTopLeftRadius:
+                    settings.eventStyle == 's1' ? `${settings.borderRadius / 2}px` : null,
+                  borderTopRightRadius:
+                    settings.eventStyle == 's1' ? `${settings.borderRadius / 2}px` : null,
                 }"
                 v-if="event.title"
               >
                 <span v-if="event.start" class="font-normal">
                   {{ event.start }}
                   <span v-if="event.end"> &bull; {{ event.end }}</span>
-                  <br />
                 </span>
                 {{ event.title }}
               </div>
@@ -183,7 +195,7 @@ const getMediaUrl = (mediaId) => {
           </div>
           <div class="flex flex-1 gap-6 flex-col" v-else>
             <div
-              class="flex grow items-center justify-between text-3xl font-bold uppercase tracking-widest px-12"
+              class="flex grow items-center justify-between text-3xl font-bold uppercase tracking-widest px-12 whitespace-nowrap"
               :style="{
                 color: settings.eventFontColor,
                 backgroundColor: settings.eventBackgroundSecondaryColor,
