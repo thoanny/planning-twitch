@@ -33,14 +33,14 @@ import { Tab, TabList, TabPanel, TabPanels, Tabs } from 'primevue';
       <TabPanels>
         <TabPanel value="landscape">
           <div
-            class="w-full h-full bg-pattern-transparent rounded-lg border border-surface-300 p-4"
+            class="w-full h-full bg-pattern-transparent rounded-lg border border-surface-300 p-4 flex flex-col items-start gap-4"
           >
             <PreviewLandscape />
           </div>
         </TabPanel>
         <TabPanel value="portrait">
           <div
-            class="w-full h-full bg-pattern-transparent rounded-lg border border-surface-300 p-4 flex justify-center"
+            class="w-full h-full bg-pattern-transparent rounded-lg border border-surface-300 p-4 flex flex-col justify-center items-center gap-4"
           >
             <PreviewPortrait />
           </div>

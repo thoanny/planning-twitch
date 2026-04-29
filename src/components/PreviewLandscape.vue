@@ -8,7 +8,7 @@ import { useSettingsStore } from '@/stores/settings.js';
 import { useDebounceFn } from '@vueuse/core';
 import domtoimage from 'dom-to-image-more';
 import { storeToRefs } from 'pinia';
-import { Image } from 'primevue';
+import { Button, Image } from 'primevue';
 import { ref, watch } from 'vue';
 
 const landscape = ref();
@@ -70,14 +70,10 @@ const getMediaUrl = (mediaId) => {
   <div v-if="!imageLandscape" class="flex w-full h-full items-center justify-center aspect-video">
     Chargement en cours...
   </div>
-  <Image
-    :src="imageLandscape"
-    alt="Image"
-    :pt="{ image: { class: 'w-full' } }"
-    preview
-    @contextmenu.prevent="handleDownloadImage()"
-    v-else
-  />
+  <template v-else>
+    <Button icon="pi pi-download" label="Télécharger (paysage)" @click="handleDownloadImage()" />
+    <Image :src="imageLandscape" alt="Image" :pt="{ image: { class: 'w-full' } }" preview />
+  </template>
 
   <div class="hidden">
     <div
