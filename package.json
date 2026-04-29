@@ -1,6 +1,6 @@
 {
   "name": "planning-twitch.thoanny.fr",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "private": true,
   "type": "module",
   "scripts": {

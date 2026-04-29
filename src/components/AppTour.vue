@@ -51,11 +51,6 @@ const steps = [
     target: '[data-step="4"]',
     content: "Cliquez sur l'image d'aperçu pour l'agrandir en plein écran.",
   },
-  {
-    target: '[data-step="4"]',
-    content:
-      "Téléchargez l'image en cliquant droit sur celle-ci (laissez appuyé sur écran tactile).",
-  },
 ];
 
 const vtour = ref();
