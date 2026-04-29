@@ -4,7 +4,7 @@ import { ref } from 'vue';
 export const useSettingsStore = defineStore(
   'settings',
   () => {
-    const data = ref({
+    const defaultSettings = {
       name: 'Paramètres par défaut',
       title: 'Mon planning Twitch',
 
@@ -47,9 +47,16 @@ export const useSettingsStore = defineStore(
           value: '',
         },
       ],
-    });
+    };
 
-    return { data };
+    const data = ref({ ...defaultSettings });
+
+    const resetData = () => {
+      data.value = { ...defaultSettings };
+      window.location.reload();
+    };
+
+    return { data, resetData };
   },
   {
     persist: {

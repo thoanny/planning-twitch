@@ -21,6 +21,7 @@ import {
 import draggable from 'vuedraggable';
 
 const settingsStore = useSettingsStore();
+const { resetData } = settingsStore;
 const { data: settings } = storeToRefs(settingsStore);
 </script>
 
@@ -311,13 +312,14 @@ const { data: settings } = storeToRefs(settingsStore);
       </AccordionPanel>
     </Accordion>
     <!-- TODO -->
-    <div class="p-4" v-if="false">
+    <div class="p-4">
       <Button
         label="Réinitialiser les paramètres"
         variant="outlined"
         severity="danger"
         size="small"
         class="w-full"
+        @click="resetData"
       />
     </div>
   </div>
