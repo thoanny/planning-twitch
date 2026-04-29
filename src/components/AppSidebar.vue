@@ -3,10 +3,9 @@ import AppTour from '@/components/AppTour.vue';
 import SidebarEvents from '@/components/SidebarEvents.vue';
 import SidebarSettings from '@/components/SidebarSettings.vue';
 import { Button, Tab, TabList, TabPanel, TabPanels, Tabs } from 'primevue';
-import { inject, ref } from 'vue';
+import { ref } from 'vue';
 import { version } from '../../package';
 
-const tours = inject('tours');
 const activeTab = ref('events');
 </script>
 
