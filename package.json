@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "@globalhive/vuejs-tour": "^3.0.1",
-    "@melloware/coloris": "^0.25.0",
     "@primeuix/themes": "^3.0.0",
     "@tailwindcss/vite": "^4.3.3",
     "@vueuse/core": "^14.4.0",

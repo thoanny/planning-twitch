@@ -1,4 +1,5 @@
 <script setup>
+import ColorPicker from '@/components/ColorPicker.vue';
 import MediaDropdown from '@/components/MediaDropdown.vue';
 import MediaUploader from '@/components/MediaUploader.vue';
 import fonts from '@/data/fonts.json';
@@ -67,7 +68,7 @@ const { data: settings } = storeToRefs(settingsStore);
           </div>
           <div class="flex flex-col gap-2 mb-4">
             <label for="settings.fontColor">Couleur du texte</label>
-            <VueColoris v-model="settings.fontColor" inputId="settings.fontColor" />
+            <ColorPicker v-model="settings.fontColor" />
           </div>
           <div class="flex flex-col gap-2 mb-4">
             <label for="settings.borderRadius">Taille de l'arrondi</label>
@@ -90,7 +91,7 @@ const { data: settings } = storeToRefs(settingsStore);
         <AccordionContent>
           <div class="flex flex-col gap-2 mb-4">
             <label for="settings.backgroundColor">Couleur de fond</label>
-            <VueColoris v-model="settings.backgroundColor" inputId="settings.backgroundColor" />
+            <ColorPicker v-model="settings.backgroundColor" />
           </div>
           <div class="flex flex-col w-full gap-2 mb-4">
             <label for="settings.backgroundPattern">Image de fond</label>
@@ -208,21 +209,15 @@ const { data: settings } = storeToRefs(settingsStore);
           </div>
           <div class="flex flex-col gap-2 mb-4">
             <label for="settings.eventBackgroundPrimaryColor">Couleur principale</label>
-            <VueColoris
-              v-model="settings.eventBackgroundPrimaryColor"
-              inputId="settings.eventBackgroundPrimaryColor"
-            />
+            <ColorPicker v-model="settings.eventBackgroundPrimaryColor" />
           </div>
           <div class="flex flex-col gap-2 mb-4">
             <label for="settings.eventBackgroundSecondaryColor">Couleur secondaire</label>
-            <VueColoris
-              v-model="settings.eventBackgroundSecondaryColor"
-              inputId="settings.eventBackgroundSecondaryColor"
-            />
+            <ColorPicker v-model="settings.eventBackgroundSecondaryColor" />
           </div>
           <div class="flex flex-col gap-2 mb-4">
             <label for="settings.eventFontColor">Couleur de texte</label>
-            <VueColoris v-model="settings.eventFontColor" inputId="settings.eventFontColor" />
+            <ColorPicker v-model="settings.eventFontColor" />
           </div>
           <div class="flex flex-col gap-2 mb-4">
             <label for="settings.eventFontSizeLandscape">Taille du texte (paysage)</label>
@@ -310,18 +305,15 @@ const { data: settings } = storeToRefs(settingsStore);
           </div>
           <div class="flex flex-col gap-2 mb-4">
             <label for="settings.linkBackgroundColor">Couleur de fond</label>
-            <VueColoris
-              v-model="settings.linkBackgroundColor"
-              inputId="settings.linkBackgroundColor"
-            />
+            <ColorPicker v-model="settings.linkBackgroundColor" />
           </div>
           <div class="flex flex-col gap-2 mb-4">
             <label for="settings.linkIconColor">Couleur de l'icône</label>
-            <VueColoris v-model="settings.linkIconColor" inputId="settings.linkIconColor" />
+            <ColorPicker v-model="settings.linkIconColor" />
           </div>
           <div class="flex flex-col gap-2">
             <label for="settings.linkFontColor">Couleur du texte</label>
-            <VueColoris v-model="settings.linkFontColor" inputId="settings.linkFontColor" />
+            <ColorPicker v-model="settings.linkFontColor" />
           </div>
         </AccordionContent>
       </AccordionPanel>

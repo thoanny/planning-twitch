@@ -9,8 +9,6 @@ import Aura from '@primeuix/themes/aura';
 import PrimeVue from 'primevue/config';
 import ToastService from 'primevue/toastservice';
 
-import { createColoris } from './plugins/colorisPlugin';
-
 import { definePreset } from '@primeuix/themes';
 import { createApp } from 'vue';
 import App from './App.vue';
@@ -54,27 +52,11 @@ const AuraPreset = definePreset(Aura, {
   },
 });
 
-const coloris = createColoris({
-  theme: 'polaroid',
-  alpha: false,
-  swatches: [
-    '#faf5ff', // 50
-    '#9810fa', // 600
-    '#8200db', // 700
-    '#6e11b0', // 800
-    '#f7fee7',
-    '#5ea500',
-    '#497d00',
-    '#3c6300',
-  ],
-});
-
 app.use(pinia);
 app.use(PrimeVue, {
   theme: { preset: AuraPreset },
   license: PrimeUILicenseKey,
 });
 app.use(ToastService);
-app.use(coloris);
 
 app.mount('#app');

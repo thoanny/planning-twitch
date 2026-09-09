@@ -11,7 +11,7 @@ const activeTab = ref('events');
 </script>
 
 <template>
-  <div class="lg:max-w-md shrink-0 w-full" id="sidebar">
+  <div class="lg:max-w-sm shrink-0 w-full" id="sidebar">
     <Tabs class="shadow rounded-xl overflow-hidden" data-step="0" v-model:value="activeTab">
       <TabList>
         <Tab value="events">Événements</Tab>

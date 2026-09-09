@@ -161,7 +161,7 @@ const onEventRightClick = (event, eventId) => {
         </div>
         <div class="grid grid-cols-3 gap-4 mb-4">
           <div class="flex flex-col gap-3 w-full">
-            <label for="email" class="font-semibold">Jour</label>
+            <label for="currentEventDay" class="font-semibold">Jour</label>
             <Select
               v-model="currentEvent.day"
               :options="days"
@@ -169,19 +169,25 @@ const onEventRightClick = (event, eventId) => {
               optionValue="code"
               placeholder="Modèle"
               class="w-full"
+              id="currentEventDay"
             />
           </div>
           <div class="flex flex-col gap-3 w-full">
-            <label for="email" class="font-semibold">
+            <label for="currentEventStart" class="font-semibold">
               <span>Début</span>
             </label>
-            <InputText v-model="currentEvent.start" type="time" class="w-full" />
+            <InputText
+              v-model="currentEvent.start"
+              type="time"
+              class="w-full"
+              id="currentEventStart"
+            />
           </div>
           <div class="flex flex-col gap-3 w-full">
-            <label for="email" class="font-semibold">
+            <label for="currentEventEnd" class="font-semibold">
               <span>Fin</span>
             </label>
-            <InputText v-model="currentEvent.end" type="time" class="w-full" />
+            <InputText v-model="currentEvent.end" type="time" class="w-full" id="currentEventEnd" />
           </div>
         </div>
         <div class="flex justify-end items-center gap-2">
@@ -218,7 +224,7 @@ const onEventRightClick = (event, eventId) => {
                 class="size-10 object-cover rounded-lg shrink-0"
                 v-if="event.mediaUrl"
               />
-              <div class="font-bold truncate w-full">
+              <div class="font-bold truncate w-full text-sm">
                 {{ event.title }}
               </div>
             </div>
