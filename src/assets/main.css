@@ -39,7 +39,7 @@
 @source inline('font-{vollkorn,work-sans}');
 
 html {
-  font-size: 14px;
+  /* font-size: 14px; */
 }
 
 body {

@@ -5,6 +5,7 @@ import MediaUploader from '@/components/MediaUploader.vue';
 import days from '@/data/days.json';
 import { useEventsStore } from '@/stores/events.js';
 import { useMediasStore } from '@/stores/medias';
+import { Clone, Pencil, Plus, Trash } from '@primeicons/vue';
 import { storeToRefs } from 'pinia';
 import {
   Button,
@@ -37,7 +38,7 @@ const formType = ref();
 const items = ref([
   {
     label: 'Dupliquer',
-    icon: 'pi pi-clone',
+    icon: Clone,
     command: () => {
       onDuplicateEvent(currentEvent.value.id).then(() => resetEvent());
     },
@@ -47,7 +48,7 @@ const items = ref([
   },
   {
     label: 'Supprimer',
-    icon: 'pi pi-trash',
+    icon: Trash,
     command: () => {
       onDeleteEvent(currentEvent.value.id).then(() => resetEvent());
     },
@@ -83,7 +84,7 @@ const rightClickMenu = ref();
 const rightClickItems = ref([
   {
     label: 'Modifier',
-    icon: 'pi pi-pencil',
+    icon: Pencil,
     command: () => {
       editEvent(rightClickCurrent.value);
       rightClickCurrent.value = null;
@@ -91,7 +92,7 @@ const rightClickItems = ref([
   },
   {
     label: 'Dupliquer',
-    icon: 'pi pi-clone',
+    icon: Clone,
     command: () => {
       onDuplicateEvent(rightClickCurrent.value).then(() => resetEvent());
       rightClickCurrent.value = null;
@@ -99,7 +100,7 @@ const rightClickItems = ref([
   },
   {
     label: 'Supprimer',
-    icon: 'pi pi-trash',
+    icon: Trash,
     command: () => {
       onDeleteEvent(rightClickCurrent.value).then(() => resetEvent());
       rightClickCurrent.value = null;
@@ -118,7 +119,10 @@ const onEventRightClick = (event, eventId) => {
   <div>
     <div class="flex items-center justify-between">
       <div class="flex gap-2">
-        <Button label="Ajouter" icon="pi pi-plus" @click="showModal('add')" data-step="1" />
+        <Button @click="showModal('add')" data-step="1">
+          <Plus />
+          Ajouter
+        </Button>
         <MediaManager />
       </div>
 
@@ -181,8 +185,8 @@ const onEventRightClick = (event, eventId) => {
           </div>
         </div>
         <div class="flex justify-end items-center gap-2">
-          <Button type="button" label="Annuler" severity="secondary" @click="resetEvent"></Button>
-          <Button type="submit" label="Ajouter" v-if="formType === 'add'" />
+          <Button type="button" severity="secondary" @click="resetEvent"> Annuler </Button>
+          <Button type="submit" v-if="formType === 'add'"> Ajouter </Button>
           <SplitButton
             label="Enregistrer"
             :buttonProps="{ type: 'submit' }"

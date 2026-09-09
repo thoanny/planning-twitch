@@ -2,6 +2,7 @@
 import AppTour from '@/components/AppTour.vue';
 import SidebarEvents from '@/components/SidebarEvents.vue';
 import SidebarSettings from '@/components/SidebarSettings.vue';
+import { Code } from '@primeicons/vue';
 import { Button, Tab, TabList, TabPanel, TabPanels, Tabs } from 'primevue';
 import { ref } from 'vue';
 import { version } from '../../package';
@@ -29,7 +30,10 @@ const activeTab = ref('events');
     <div class="flex justify-center gap-1 mt-4 items-center">
       <AppTour />
       <a href="https://github.com/thoanny/planning-twitch" target="_blank">
-        <Button icon="pi pi-code" label="Source" size="small" link />
+        <Button size="small" link>
+          <Code />
+          Source
+        </Button>
       </a>
       <span class="text-sm opacity-50">v{{ version }}</span>
     </div>

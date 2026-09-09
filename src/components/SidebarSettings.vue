@@ -5,6 +5,7 @@ import fonts from '@/data/fonts.json';
 import patterns from '@/data/patterns.json';
 import socials from '@/data/socials.json';
 import { useSettingsStore } from '@/stores/settings.js';
+import { Bars } from '@primeicons/vue';
 import { storeToRefs } from 'pinia';
 import {
   Accordion,
@@ -285,7 +286,7 @@ const { data: settings } = storeToRefs(settingsStore);
               <template #item="{ element: link }">
                 <div class="grid grid-cols-2 gap-2">
                   <div class="flex gap-2 items-center">
-                    <div class="handle cursor-grab"><span class="pi pi-bars"></span></div>
+                    <div class="handle cursor-grab"><Bars /></div>
                     <Select
                       v-model="link.type"
                       :options="socials"
@@ -325,26 +326,18 @@ const { data: settings } = storeToRefs(settingsStore);
         </AccordionContent>
       </AccordionPanel>
     </Accordion>
-    <!-- TODO -->
     <div class="p-4">
-      <Button
-        label="Réinitialiser les paramètres"
-        variant="outlined"
-        severity="danger"
-        size="small"
-        class="w-full"
-        @click="resetData"
-      />
+      <Button variant="outlined" severity="danger" class="w-full" @click="resetData">
+        Réinitialiser les paramètres
+      </Button>
     </div>
   </div>
   <!-- <pre>{{ settings }}</pre> -->
 </template>
 
 <style scoped>
-@reference 'tailwindcss';
-
 label {
-  @apply font-semibold;
+  font-weight: 500;
 }
 
 .p-accordion {

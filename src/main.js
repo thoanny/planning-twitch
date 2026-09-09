@@ -15,6 +15,8 @@ import { definePreset } from '@primeuix/themes';
 import { createApp } from 'vue';
 import App from './App.vue';
 
+const PrimeUILicenseKey = import.meta.env.VITE_PRIMEUI_LICENSE_KEY;
+
 const app = createApp(App);
 
 const pinia = createPinia();
@@ -70,6 +72,7 @@ const coloris = createColoris({
 app.use(pinia);
 app.use(PrimeVue, {
   theme: { preset: AuraPreset },
+  license: PrimeUILicenseKey,
 });
 app.use(ToastService);
 app.use(coloris);

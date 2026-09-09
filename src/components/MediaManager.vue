@@ -1,6 +1,9 @@
 <template>
   <div class="card flex justify-content-center">
-    <Button @click="visible = true" icon="pi pi-images" label="Médias" />
+    <Button @click="visible = true">
+      <Images />
+      Médias
+    </Button>
     <Dialog
       v-model:visible="visible"
       modal
@@ -20,38 +23,85 @@
               :key="index"
             >
               <div class="flex grow w-full gap-2 items-center">
-                <Image
+                <img
                   :src="media.dataUrl"
-                  imageClass="size-12 aspect-square w-full object-cover shrink-0 rounded"
-                  preview
+                  class="size-12 aspect-square object-cover shrink-0 rounded cursor-pointer"
+                  @click="
+                    () => {
+                      selectedImageGallery = media;
+                      galleryOpen = true;
+                    }
+                  "
                 />
                 <div class="truncate hidden sm:block w-full" style="max-width: calc(100% - 4rem)">
                   {{ media.name }}
                 </div>
               </div>
               <div>
-                <Button
-                  label="Supprimer"
-                  severity="danger"
-                  size="small"
-                  text
-                  @click="onDeleteMedia(media.id)"
-                />
+                <Button severity="danger" size="small" text @click="onDeleteMedia(media.id)">
+                  Supprimer
+                </Button>
               </div>
             </div>
           </div>
         </template>
       </DataView>
     </Dialog>
+
+    <Gallery v-if="galleryOpen" fullscreen @update:fullscreen="galleryOpen = $event">
+      <GalleryBackdrop />
+      <GalleryHeader class="justify-end gap-2">
+        <Button
+          severity="danger"
+          iconOnly
+          rounded
+          @click="
+            () => {
+              galleryOpen = false;
+              onDeleteMedia(selectedImageGallery.id);
+            }
+          "
+          class="mr-4"
+        >
+          <Trash />
+        </Button>
+        <GalleryZoomIn>
+          <SearchPlus />
+        </GalleryZoomIn>
+        <GalleryZoomOut>
+          <SearchMinus />
+        </GalleryZoomOut>
+        <button class="p-gallery-action" @click="galleryOpen = false">
+          <Times />
+        </button>
+      </GalleryHeader>
+      <GalleryContent>
+        <GalleryItem>
+          <img :src="selectedImageGallery.dataUrl" alt="image" />
+        </GalleryItem>
+      </GalleryContent>
+    </Gallery>
   </div>
 </template>
 
 <script setup>
+import MediaUploader from '@/components/MediaUploader.vue';
 import { useMediasStore } from '@/stores/medias';
+import { Images, SearchMinus, SearchPlus, Times, Trash } from '@primeicons/vue';
 import { storeToRefs } from 'pinia';
-import { Button, DataView, Dialog, Image } from 'primevue';
+import {
+  Button,
+  DataView,
+  Dialog,
+  Gallery,
+  GalleryBackdrop,
+  GalleryContent,
+  GalleryHeader,
+  GalleryItem,
+  GalleryZoomIn,
+  GalleryZoomOut,
+} from 'primevue';
 import { ref } from 'vue';
-import MediaUploader from './MediaUploader.vue';
 
 const mediasStore = useMediasStore();
 
@@ -59,4 +109,6 @@ const { onDeleteMedia } = mediasStore;
 const { medias } = storeToRefs(mediasStore);
 
 const visible = ref(false);
+const selectedImageGallery = ref('');
+const galleryOpen = ref(false);
 </script>

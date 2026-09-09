@@ -1,5 +1,8 @@
 <template>
-  <Button icon="pi pi-question-circle" label="Aide" size="small" link @click="handleStartTour" />
+  <Button size="small" link @click="handleStartTour">
+    <QuestionCircle />
+    Aide
+  </Button>
   <VTour
     :steps="steps"
     ref="vtour"
@@ -11,6 +14,7 @@
 
 <script setup>
 import { VTour } from '@globalhive/vuejs-tour';
+import { QuestionCircle } from '@primeicons/vue';
 import { Button } from 'primevue';
 import { ref } from 'vue';
 

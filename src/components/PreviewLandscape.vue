@@ -5,14 +5,25 @@ import socials from '@/data/socials.json';
 import { useEventsStore } from '@/stores/events';
 import { useMediasStore } from '@/stores/medias';
 import { useSettingsStore } from '@/stores/settings.js';
+import { Download, SearchMinus, SearchPlus, Times } from '@primeicons/vue';
 import { useDebounceFn } from '@vueuse/core';
 import domtoimage from 'dom-to-image-more';
 import { storeToRefs } from 'pinia';
-import { Button, Image } from 'primevue';
+import {
+  Button,
+  Gallery,
+  GalleryBackdrop,
+  GalleryContent,
+  GalleryHeader,
+  GalleryItem,
+  GalleryZoomIn,
+  GalleryZoomOut,
+} from 'primevue';
 import { ref, watch } from 'vue';
 
 const landscape = ref();
 const imageLandscape = ref();
+const galleryOpen = ref(false);
 
 const settingsStore = useSettingsStore();
 const { data: settings } = storeToRefs(settingsStore);
@@ -72,8 +83,35 @@ const getMediaUrl = (mediaId) => {
     Chargement en cours...
   </div>
   <template v-else>
-    <Button icon="pi pi-download" label="Télécharger (paysage)" @click="handleDownloadImage()" />
-    <Image :src="imageLandscape" alt="Image" :pt="{ image: { class: 'w-full' } }" preview />
+    <Button @click="handleDownloadImage()">
+      <Download />
+      Télécharger (paysage)
+    </Button>
+    <img
+      :src="imageLandscape"
+      alt="Image"
+      class="cursor-pointer w-full"
+      @click="galleryOpen = true"
+    />
+    <Gallery v-if="galleryOpen" fullscreen @update:fullscreen="galleryOpen = $event">
+      <GalleryBackdrop />
+      <GalleryHeader class="justify-end gap-2">
+        <GalleryZoomIn>
+          <SearchPlus />
+        </GalleryZoomIn>
+        <GalleryZoomOut>
+          <SearchMinus />
+        </GalleryZoomOut>
+        <button class="p-gallery-action" @click="galleryOpen = false">
+          <Times />
+        </button>
+      </GalleryHeader>
+      <GalleryContent>
+        <GalleryItem>
+          <img :src="imageLandscape" alt="image" />
+        </GalleryItem>
+      </GalleryContent>
+    </Gallery>
   </template>
 
   <div class="hidden">

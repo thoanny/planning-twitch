@@ -4,14 +4,25 @@ import days from '@/data/days.json';
 import { useEventsStore } from '@/stores/events';
 import { useMediasStore } from '@/stores/medias';
 import { useSettingsStore } from '@/stores/settings.js';
+import { Download, SearchMinus, SearchPlus, Times } from '@primeicons/vue';
 import { useDebounceFn } from '@vueuse/core';
 import domtoimage from 'dom-to-image-more';
 import { storeToRefs } from 'pinia';
-import { Button, Image } from 'primevue';
+import {
+  Button,
+  Gallery,
+  GalleryBackdrop,
+  GalleryContent,
+  GalleryHeader,
+  GalleryItem,
+  GalleryZoomIn,
+  GalleryZoomOut,
+} from 'primevue';
 import { ref, watch } from 'vue';
 
 const portrait = ref();
 const imagePortrait = ref();
+const galleryOpen = ref(false);
 
 const settingsStore = useSettingsStore();
 const { data: settings } = storeToRefs(settingsStore);
@@ -72,17 +83,36 @@ const getMediaUrl = (mediaId) => {
   </div>
   <template v-else>
     <div class="w-full">
-      <Button icon="pi pi-download" label="Télécharger (portrait)" @click="handleDownloadImage()" />
+      <Button @click="handleDownloadImage()">
+        <Download />
+        Télécharger (portrait)
+      </Button>
     </div>
-    <Image
+    <img
       :src="imagePortrait"
       alt="Image"
-      :pt="{
-        image: { class: 'w-full object-contain block lg:max-h-[75dvh]' },
-        root: { class: 'block' },
-      }"
-      preview
+      class="cursor-pointer w-full object-contain block lg:max-h-[75dvh]"
+      @click="galleryOpen = true"
     />
+    <Gallery v-if="galleryOpen" fullscreen @update:fullscreen="galleryOpen = $event">
+      <GalleryBackdrop />
+      <GalleryHeader class="justify-end gap-2">
+        <GalleryZoomIn>
+          <SearchPlus />
+        </GalleryZoomIn>
+        <GalleryZoomOut>
+          <SearchMinus />
+        </GalleryZoomOut>
+        <button class="p-gallery-action" @click="galleryOpen = false">
+          <Times />
+        </button>
+      </GalleryHeader>
+      <GalleryContent>
+        <GalleryItem>
+          <img :src="imagePortrait" alt="image" />
+        </GalleryItem>
+      </GalleryContent>
+    </Gallery>
   </template>
 
   <div class="hidden">
