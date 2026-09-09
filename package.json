@@ -1,6 +1,6 @@
 {
   "name": "planning-twitch.thoanny.fr",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "private": true,
   "type": "module",
   "scripts": {
@@ -14,29 +14,29 @@
     "@globalhive/vuejs-tour": "^3.0.1",
     "@melloware/coloris": "^0.25.0",
     "@primeuix/themes": "^2.0.3",
-    "@tailwindcss/vite": "^4.2.4",
-    "@vueuse/core": "^14.2.1",
-    "@vueuse/rxjs": "^14.2.1",
-    "dexie": "^4.4.2",
-    "dom-to-image-more": "^3.7.2",
+    "@tailwindcss/vite": "^4.3.3",
+    "@vueuse/core": "^14.4.0",
+    "@vueuse/rxjs": "^14.4.0",
+    "dexie": "^4.4.5",
+    "dom-to-image-more": "^3.10.2",
     "pinia": "^3.0.4",
     "pinia-plugin-persistedstate": "^4.7.1",
     "primeicons": "^7.0.0",
     "primevue": "^4.5.5",
     "rxjs": "^7.8.2",
-    "tailwindcss": "^4.2.4",
+    "tailwindcss": "^4.3.3",
     "tailwindcss-primeui": "^0.6.1",
-    "vue": "^3.5.33",
+    "vue": "^3.5.42",
     "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.16.1",
-    "@vitejs/plugin-vue": "^6.0.6",
+    "@vitejs/plugin-vue": "^6.0.8",
     "@vue/eslint-config-prettier": "^10.2.0",
-    "autoprefixer": "^10.5.0",
-    "eslint": "^10.2.1",
-    "eslint-plugin-vue": "^10.9.0",
-    "prettier": "^3.8.3",
-    "vite": "^8.0.10"
+    "autoprefixer": "^10.5.5",
+    "eslint": "^10.10.0",
+    "eslint-plugin-vue": "^10.11.0",
+    "prettier": "^3.9.6",
+    "vite": "^8.2.2"
   }
 }
